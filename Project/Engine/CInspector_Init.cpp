@@ -116,52 +116,52 @@ void CInspector::CreateAssetUI()
 	CAssetUI* UI = nullptr;
 
 	UI = new CMeshUI;
-	UI->SetName("CMeshUI");
+	UI->SetName("MeshUI");
 	AddChild(UI);
-	m_arrCAssetUI[(UINT)ASSET_TYPE::MESH] = UI;
+	m_arrAssetUI[(UINT)ASSET_TYPE::MESH] = UI;
 
 	UI = new CMeshDataUI;
-	UI->SetName("CMeshDataUI");
+	UI->SetName("MeshDataUI");
 	AddChild(UI);
-	m_arrCAssetUI[(UINT)ASSET_TYPE::MESH_DATA] = UI;
+	m_arrAssetUI[(UINT)ASSET_TYPE::MESH_DATA] = UI;
 
 	UI = new CMaterialUI;
-	UI->SetName("CMaterialUI");
+	UI->SetName("MaterialUI");
 	AddChild(UI);
-	m_arrCAssetUI[(UINT)ASSET_TYPE::MATERIAL] = UI;
+	m_arrAssetUI[(UINT)ASSET_TYPE::MATERIAL] = UI;
 
 	UI = new CPrefabUI;
-	UI->SetName("CPrefabUI");
+	UI->SetName("PrefabUI");
 	AddChild(UI);
-	m_arrCAssetUI[(UINT)ASSET_TYPE::PREFAB] = UI;
+	m_arrAssetUI[(UINT)ASSET_TYPE::PREFAB] = UI;
 
 	UI = new CTextureUI;
-	UI->SetName("CTextureUI");
+	UI->SetName("TextureUI");
 	AddChild(UI);
-	m_arrCAssetUI[(UINT)ASSET_TYPE::TEXTURE] = UI;
+	m_arrAssetUI[(UINT)ASSET_TYPE::TEXTURE] = UI;
 
 	UI = new CSpriteUI;
-	UI->SetName("CSpriteUI");
+	UI->SetName("SpriteUI");
 	AddChild(UI);
-	m_arrCAssetUI[(UINT)ASSET_TYPE::SPRITE] = UI;
+	m_arrAssetUI[(UINT)ASSET_TYPE::SPRITE] = UI;
 
 	UI = new CFlipbookUI;
-	UI->SetName("CFlipbookUI");
+	UI->SetName("FlipbookUI");
 	AddChild(UI);
-	m_arrCAssetUI[(UINT)ASSET_TYPE::FLIPBOOK] = UI;
+	m_arrAssetUI[(UINT)ASSET_TYPE::FLIPBOOK] = UI;
 
 	UI = new CSoundUI;
-	UI->SetName("CSoundUI");
+	UI->SetName("SoundUI");
 	AddChild(UI);
-	m_arrCAssetUI[(UINT)ASSET_TYPE::SOUND] = UI;
+	m_arrAssetUI[(UINT)ASSET_TYPE::SOUND] = UI;
 
 	UI = new CGraphicShaderUI;
-	UI->SetName("CGraphicShaderUI");
+	UI->SetName("GraphicShaderUI");
 	AddChild(UI);
-	m_arrCAssetUI[(UINT)ASSET_TYPE::GRAPHIC_SHADER] = UI;
+	m_arrAssetUI[(UINT)ASSET_TYPE::GRAPHIC_SHADER] = UI;
 
 	UI = new CComputeShaderUI;
-	UI->SetName("CComputeShaderUI");
+	UI->SetName("ComputeShaderUI");
 	AddChild(UI);
-	m_arrCAssetUI[(UINT)ASSET_TYPE::COMPUTE_SHADER] = UI;
+	m_arrAssetUI[(UINT)ASSET_TYPE::COMPUTE_SHADER] = UI;
 }

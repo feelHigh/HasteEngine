@@ -17,7 +17,7 @@ public:
     virtual void LoadFromFile(FILE* _File) override;
 
 private:
-    void OrthoGraphicMove();
+    void OrthographicMove();
     void PerspectiveMove();
 
 private:

@@ -14,6 +14,4 @@ CMeshDataUI::~CMeshDataUI()
 void CMeshDataUI::Update()
 {
 	Title();
-
-
 }

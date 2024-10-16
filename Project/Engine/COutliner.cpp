@@ -16,7 +16,6 @@
 #include "CTreeUI.h"
 #include "CInspector.h"
 
-
 COutliner::COutliner()
 {
 	m_Tree = new CTreeUI;

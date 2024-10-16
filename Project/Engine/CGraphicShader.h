@@ -10,7 +10,7 @@ struct tScalarParam
 struct tTexParam
 {
     TEXTURE_PARAMETER   ParamType;
-    string              SstrDesc;
+    string              strDesc;
 };
 
 

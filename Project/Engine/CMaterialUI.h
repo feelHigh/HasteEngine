@@ -1,5 +1,4 @@
 #pragma once
-
 #include "CAssetUI.h"
 
 class CMaterialUI

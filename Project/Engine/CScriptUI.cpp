@@ -5,7 +5,7 @@
 #include "CScript.h"
 
 // Editor Headers
-#include "CParamUI.h"
+#include "CParameterUI.h"
 #include "CListUI.h"
 
 // Script Headers
@@ -48,24 +48,24 @@ void CScriptUI::Update()
 		switch (vecParam[i].Type)
 		{
 		case SCRIPT_PARAM::INT:
-			CParamUI::InputInt((int*)vecParam[i].pData, vecParam[i].Desc);
+			CParameterUI::InputInt((int*)vecParam[i].pData, vecParam[i].Desc);
 			break;
 		case SCRIPT_PARAM::FLOAT:
-			CParamUI::InputFloat((float*)vecParam[i].pData, vecParam[i].Desc);
+			CParameterUI::InputFloat((float*)vecParam[i].pData, vecParam[i].Desc);
 			break;
 		case SCRIPT_PARAM::VEC2:
-			CParamUI::InputFloat((float*)vecParam[i].pData, vecParam[i].Desc);
+			CParameterUI::InputFloat((float*)vecParam[i].pData, vecParam[i].Desc);
 			break;
 		case SCRIPT_PARAM::VEC3:
 
 			break;
 		case SCRIPT_PARAM::VEC4:
-			CParamUI::InputVec4((Vec4*)vecParam[i].pData, vecParam[i].Desc);
+			CParameterUI::InputVec4((Vec4*)vecParam[i].pData, vecParam[i].Desc);
 			break;
 		case SCRIPT_PARAM::TEXTURE:
 		{
 			Ptr<CTexture>& pTex = *((Ptr<CTexture>*)vecParam[i].pData);
-			CParamUI::InputTexture(pTex, vecParam[i].Desc);
+			CParameterUI::InputTexture(pTex, vecParam[i].Desc);
 			m_UIHeight += 8;
 			break;
 		}
@@ -73,7 +73,7 @@ void CScriptUI::Update()
 		{
 			Ptr<CPrefab>& pPrefab = *((Ptr<CPrefab>*)vecParam[i].pData);
 
-			if (CParamUI::InputPrefab(pPrefab, vecParam[i].Desc, this, (DELEGATE_1)&CScriptUI::SelectPrefab))
+			if (CParameterUI::InputPrefab(pPrefab, vecParam[i].Desc, this, (DELEGATE_1)&CScriptUI::SelectPrefab))
 			{
 				m_SelectedPrefab = &pPrefab;
 			}

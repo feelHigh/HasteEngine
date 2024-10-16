@@ -141,7 +141,6 @@ bool CParameterUI::DragVec4(Vec4* _Data, float _Step, const string& _Desc)
 	return false;
 }
 
-
 #include "CTreeUI.h"
 bool CParameterUI::InputTexture(Ptr<CTexture>& _CurTex, const string& _Desc
 								, CEditor* _Inst, DELEGATE_1 _MemFunc)
@@ -198,7 +197,7 @@ bool CParameterUI::InputTexture(Ptr<CTexture>& _CurTex, const string& _Desc
 	ImGui::SameLine();
 	if (ImGui::Button(szID, ImVec2(18.f, 18.f)))
 	{
-		CListUI* pListUI = (CListUI*)CEditorMgr::GetInstance()->FindEditorUI("List");
+		CListUI* pListUI = (CListUI*)CEditorMgr::GetInstance()->FindEditor("List");
 		pListUI->SetName("Texture");
 		vector<string> vecTexNames;
 		CAssetMgr::GetInstance()->GetAssetNames(ASSET_TYPE::TEXTURE, vecTexNames);

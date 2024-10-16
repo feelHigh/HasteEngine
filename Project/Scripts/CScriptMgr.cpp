@@ -5,6 +5,7 @@
 #include "CEditorCameraScript.h"
 #include "CMissileScript.h"
 #include "CPlayerScript.h"
+#include "CScriptMgr.h"
 
 void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
@@ -12,6 +13,7 @@ void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"CEditorCameraScript");
 	_vec.push_back(L"CMissileScript");
 	_vec.push_back(L"CPlayerScript");
+	_vec.push_back(L"CScriptMgr");
 }
 
 CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
@@ -24,6 +26,8 @@ CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 		return new CMissileScript;
 	if (L"CPlayerScript" == _strScriptName)
 		return new CPlayerScript;
+	if (L"CScriptMgr" == _strScriptName)
+		return new CScriptMgr;
 	return nullptr;
 }
 
@@ -42,6 +46,9 @@ CScript * CScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::PLAYERSCRIPT:
 		return new CPlayerScript;
+		break;
+	case (UINT)SCRIPT_TYPE::SCRIPTMGR:
+		return new CScriptMgr;
 		break;
 	}
 	return nullptr;
@@ -65,6 +72,10 @@ const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 
 	case SCRIPT_TYPE::PLAYERSCRIPT:
 		return L"CPlayerScript";
+		break;
+
+	case SCRIPT_TYPE::SCRIPTMGR:
+		return L"CScriptMgr";
 		break;
 
 	}

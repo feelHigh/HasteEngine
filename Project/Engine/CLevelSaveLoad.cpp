@@ -223,7 +223,7 @@ CComponent* CLevelSaveLoad::GetComponent(COMPONENT_TYPE _Type)
 	case COMPONENT_TYPE::FLIPBOOKCOMPONENT:
 		return new CCollider2D;
 
-	case COMPONENT_TYPE::ANIMATOR3D:
+	case COMPONENT_TYPE::ANIMATION:
 		break;
 
 	case COMPONENT_TYPE::STATE_MACHINE:

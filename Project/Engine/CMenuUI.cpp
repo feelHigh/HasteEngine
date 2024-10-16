@@ -95,7 +95,7 @@ void CMenuUI::Level()
 		{
 			if (LEVEL_STATE::STOP == State)
 			{
-				wstring strLevelPath = CPathMgr::GetInst()->GetContentPath();
+				wstring strLevelPath = CPathMgr::GetInstance()->GetContentPath();
 				strLevelPath += L"level\\Temp.lv";
 				CLevelSaveLoad::SaveLevel(strLevelPath, pCurLevel);
 			}

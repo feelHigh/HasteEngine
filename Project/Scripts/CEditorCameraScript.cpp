@@ -131,3 +131,13 @@ void CEditorCameraScript::PerspectiveMove()
 		CKeyMgr::GetInstance()->MouseCapture(false);
 	}
 }
+
+void CEditorCameraScript::SaveToFile(FILE* _File)
+{
+	fwrite(&m_Speed, sizeof(float), 1, _File);
+}
+
+void CEditorCameraScript::LoadFromFile(FILE* _File)
+{
+	fread(&m_Speed, sizeof(float), 1, _File);
+}

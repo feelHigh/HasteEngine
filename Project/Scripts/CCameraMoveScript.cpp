@@ -15,7 +15,7 @@ void CCameraMoveScript::Tick()
 {
 	if (PROJECTION_TYPE::ORTHOGRAPHIC == Camera()->GetProjectionType())
 	{
-		OrthoGraphicMove();
+		OrthographicMove();
 	}
 
 	else if (PROJECTION_TYPE::PERSPECTIVE == Camera()->GetProjectionType())
@@ -33,7 +33,7 @@ void CCameraMoveScript::Tick()
 	}
 }
 
-void CCameraMoveScript::OrthoGraphicMove()
+void CCameraMoveScript::OrthographicMove()
 {
 	float Speed = m_CamSpeed;
 

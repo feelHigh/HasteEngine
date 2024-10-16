@@ -65,7 +65,7 @@ void CMeshRenderUI::Update()
 	ImGui::SameLine();
 	if (ImGui::Button("##MeshBtn", ImVec2(18.f, 18.f)))
 	{
-		CListUI* pListUI = (CListUI*)CEditorMgr::GetInstance()->FindEditorUI("List");
+		CListUI* pListUI = (CListUI*)CEditorMgr::GetInstance()->FindEditor("List");
 		pListUI->SetName("Mesh");
 		vector<string> vecMeshNames;
 		CAssetMgr::GetInstance()->GetAssetNames(ASSET_TYPE::MESH, vecMeshNames);
@@ -111,7 +111,7 @@ void CMeshRenderUI::Update()
 	ImGui::SameLine();
 	if (ImGui::Button("##MtrlBtn", ImVec2(18.f, 18.f)))
 	{
-		CListUI* pListUI = (CListUI*)CEditorMgr::GetInstance()->FindEditorUI("List");
+		CListUI* pListUI = (CListUI*)CEditorMgr::GetInstance()->FindEditor("List");
 		pListUI->SetName("Material");
 		vector<string> vecMtrlNames;
 		CAssetMgr::GetInstance()->GetAssetNames(ASSET_TYPE::MATERIAL, vecMtrlNames);

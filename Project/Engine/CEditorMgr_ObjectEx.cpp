@@ -26,7 +26,7 @@ void CEditorMgr::CreateEditorObject()
 	pEditorCamera->Camera()->SetLayerAll();
 	pEditorCamera->Camera()->SetLayer(31, false);
 	pEditorCamera->Camera()->SetFar(100000.f);
-	pEditorCamera->Camera()->SetProjectionType(PERSPECTIVE);
+	pEditorCamera->Camera()->SetProjectionType(PROJECTION_TYPE::PERSPECTIVE);
 
 	m_vecEditorObject.push_back(pEditorCamera);
 

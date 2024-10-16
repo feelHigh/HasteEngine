@@ -1,5 +1,4 @@
 #pragma once
-
 #include "CPathMgr.h"
 #include "CTaskMgr.h"
 

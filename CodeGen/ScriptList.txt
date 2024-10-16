@@ -2,3 +2,4 @@ CCameraMoveScript
 CEditorCameraScript
 CMissileScript
 CPlayerScript
+CScriptMgr

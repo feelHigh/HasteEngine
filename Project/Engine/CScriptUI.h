@@ -19,10 +19,10 @@ private:
     void SelectPrefab(DWORD_PTR _ListUI);
 
 private:
-    class CScript* m_Script;
+    CScript*        m_Script;
 
     UINT            m_UIHeight;
 
-    Ptr<CPrefab>* m_SelectedPrefab;
+    Ptr<CPrefab>*   m_SelectedPrefab;
 
 };

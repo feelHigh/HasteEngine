@@ -1,12 +1,14 @@
 #include "pch.h"
 #include "CMaterialUI.h"
 
+// Manager Headers
+#include "CAssetMgr.h"
+#include "CEditorMgr.h"
+
+// Editor Headers
 #include "CListUI.h"
 #include "CTreeUI.h"
-#include "CEditorMgr.h"
-#include "ParamUI.h"
-
-#include <Engine/CAssetMgr.h>
+#include "CParameterUI.h"
 
 CMaterialUI::CMaterialUI()
 	: CAssetUI(ASSET_TYPE::MATERIAL)
@@ -16,7 +18,6 @@ CMaterialUI::CMaterialUI()
 CMaterialUI::~CMaterialUI()
 {
 }
-
 
 void CMaterialUI::Update()
 {
@@ -63,7 +64,7 @@ void CMaterialUI::Update()
 	ImGui::SameLine();
 	if (ImGui::Button("##ShaderBtn", ImVec2(18.f, 18.f)))
 	{
-		ListUI* pListUI = (ListUI*)CEditorMgr::GetInstance()->FindEditorUI("List");
+		CListUI* pListUI = (CListUI*)CEditorMgr::GetInstance()->FindEditor("List");
 		pListUI->SetName("GraphicShader");
 		vector<string> vecMeshNames;
 		CAssetMgr::GetInstance()->GetAssetNames(ASSET_TYPE::GRAPHIC_SHADER, vecMeshNames);
@@ -71,7 +72,6 @@ void CMaterialUI::Update()
 		pListUI->AddDelegate(this, (DELEGATE_1)&CMaterialUI::SelectShader);
 		pListUI->SetActive(true);
 	}
-
 
 	ImGui::Text("");
 	ImGui::Text("");
@@ -93,7 +93,6 @@ void CMaterialUI::ShaderParameter()
 	const vector<tScalarParam>& vecScalarParam = pShader->GetScalarParam();
 	const vector<tTexParam>& vecTexParam = pShader->GetTexParam();
 
-
 	// Scalar 파라미터 대응
 	for (size_t i = 0; i < vecScalarParam.size(); ++i)
 	{
@@ -105,9 +104,9 @@ void CMaterialUI::ShaderParameter()
 		case INT_3:
 		{
 			int data = *((int*)pMtrl->GetScalarParameter(vecScalarParam[i].ParamType));
-			if (ParamUI::DragInt(&data, 1, vecScalarParam[i].strDesc))
+			if (CParameterUI::DragInt(&data, 1, vecScalarParam[i].strDesc))
 			{
-				pMtrl->SetScalarParametereter(vecScalarParam[i].ParamType, data);
+				pMtrl->SetScalarParameter(vecScalarParam[i].ParamType, data);
 				SaveMaterialToFile();
 			}
 		}
@@ -119,9 +118,9 @@ void CMaterialUI::ShaderParameter()
 		case FLOAT_3:
 		{
 			float data = *((float*)pMtrl->GetScalarParameter(vecScalarParam[i].ParamType));
-			if (ParamUI::DragFloat(&data, 0.1f, vecScalarParam[i].strDesc))
+			if (CParameterUI::DragFloat(&data, 0.1f, vecScalarParam[i].strDesc))
 			{
-				pMtrl->SetScalarParametereter(vecScalarParam[i].ParamType, data);
+				pMtrl->SetScalarParameter(vecScalarParam[i].ParamType, data);
 				SaveMaterialToFile();
 			}
 		}
@@ -132,9 +131,9 @@ void CMaterialUI::ShaderParameter()
 		case VEC2_3:
 		{
 			Vec2 data = *((Vec2*)pMtrl->GetScalarParameter(vecScalarParam[i].ParamType));
-			if (ParamUI::DragVec2(&data, 0.1f, vecScalarParam[i].strDesc))
+			if (CParameterUI::DragVec2(&data, 0.1f, vecScalarParam[i].strDesc))
 			{
-				pMtrl->SetScalarParametereter(vecScalarParam[i].ParamType, data);
+				pMtrl->SetScalarParameter(vecScalarParam[i].ParamType, data);
 				SaveMaterialToFile();
 			}
 		}
@@ -145,9 +144,9 @@ void CMaterialUI::ShaderParameter()
 		case VEC4_3:
 		{
 			Vec4 data = *((Vec4*)pMtrl->GetScalarParameter(vecScalarParam[i].ParamType));
-			if (ParamUI::DragVec4(&data, 0.1f, vecScalarParam[i].strDesc))
+			if (CParameterUI::DragVec4(&data, 0.1f, vecScalarParam[i].strDesc))
 			{
-				pMtrl->SetScalarParametereter(vecScalarParam[i].ParamType, data);
+				pMtrl->SetScalarParameter(vecScalarParam[i].ParamType, data);
 				SaveMaterialToFile();
 			}
 		}
@@ -169,7 +168,7 @@ void CMaterialUI::ShaderParameter()
 	{
 		Ptr<CTexture> pCurTex = pMtrl->GetTextureParameter(vecTexParam[i].ParamType);
 
-		if (ParamUI::InputTexture(pCurTex, vecTexParam[i].strDesc, this, (DELEGATE_1)&CMaterialUI::ChangeTexture))
+		if (CParameterUI::InputTexture(pCurTex, vecTexParam[i].strDesc, this, (DELEGATE_1)&CMaterialUI::ChangeTexture))
 		{
 			pMtrl->SetTextureParameter(vecTexParam[i].ParamType, pCurTex);
 			m_SelectTexParam = vecTexParam[i].ParamType;
@@ -178,12 +177,11 @@ void CMaterialUI::ShaderParameter()
 	}
 }
 
-
 void CMaterialUI::SelectShader(DWORD_PTR _ListUI)
 {
 	Ptr<CMaterial> pMtrl = (CMaterial*)GetAsset().Get();
 
-	ListUI* pListUI = (ListUI*)_ListUI;
+	CListUI* pListUI = (CListUI*)_ListUI;
 	string strName = pListUI->GetSelectName();
 
 	if ("None" == strName)
@@ -222,7 +220,7 @@ void CMaterialUI::ChangeTexture(DWORD_PTR Param)
 	Ptr<CMaterial> pMtrl = (CMaterial*)GetAsset().Get();
 
 	// 마지막으로 선택한 항목이 무엇인지 ListUI 를 통해서 알아냄
-	ListUI* pListUI = (ListUI*)Param;
+	CListUI* pListUI = (CListUI*)Param;
 	string strName = pListUI->GetSelectName();
 
 	if ("None" == strName)

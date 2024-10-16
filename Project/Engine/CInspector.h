@@ -27,11 +27,11 @@ private:
     void CreateAssetUI();
 
 private:
-    class CGameObject*      m_TargetObject;
-    class CComponentUI*     m_arrComUI[(UINT)COMPONENT_TYPE::END];
-    vector<class ScriptUI*> m_vecScriptUI;
+    class CGameObject*          m_TargetObject;
+    class CComponentUI*         m_arrComUI[(UINT)COMPONENT_TYPE::END];
+    vector<class CScriptUI*>    m_vecScriptUI;
 
-    Ptr<CAsset>             m_TargetAsset;
-    class AssetUI*          m_arrAssetUI[(UINT)ASSET_TYPE::END];
+    Ptr<CAsset>                 m_TargetAsset;
+    class CAssetUI*             m_arrAssetUI[(UINT)ASSET_TYPE::END];
 
 };
