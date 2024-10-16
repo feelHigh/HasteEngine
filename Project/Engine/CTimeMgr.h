@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CTIMEMGR_H
+#define CTIMEMGR_H
 
 class CTimeMgr
 	: public CSingleton<CTimeMgr>
@@ -35,3 +36,5 @@ private:
 	wchar_t			m_TimeInfo[255];
 
 };
+
+#endif // CTIMEMGR_H

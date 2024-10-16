@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CSHADER_H
+#define CSHADER_H
+
 #include "CAsset.h"
 
 class CShader :
@@ -16,3 +18,5 @@ protected:
     ComPtr<ID3DBlob> m_ErrBlob;
 
 };
+
+#endif

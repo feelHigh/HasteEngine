@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CCOMPONENT_H
+#define CCOMPONENT_H
+
 #include "CEntity.h"
 #include "CGameObject.h"
 
@@ -43,9 +45,11 @@ public:
 
 private:
     const COMPONENT_TYPE    m_Type;
-    CGameObject* m_Owner;
+    CGameObject*            m_Owner;
 
 private:
     void SetOwner(CGameObject* _Object) { m_Owner = _Object; }
 
 };
+
+#endif

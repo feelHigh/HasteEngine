@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CENTITY_H
+#define CENTITY_H
 
 class CEntity
 {
@@ -21,3 +22,5 @@ private:
 	const UINT	m_ID;
 
 };
+
+#endif

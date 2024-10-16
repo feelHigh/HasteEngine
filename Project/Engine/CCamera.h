@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CCAMERA_H
+#define CCAMERA_H
+
 #include "CComponent.h"
 
 class CGameObject;
@@ -99,3 +101,5 @@ private:
     void Render_Effect();
 
 };
+
+#endif

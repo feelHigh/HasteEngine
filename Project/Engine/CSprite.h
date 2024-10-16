@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CSPRITE_H
+#define CSPRITE_H
+
 #include "CAsset.h"
 
 class CSprite :
@@ -36,3 +38,5 @@ private:
     Vec2            m_OffsetUV;
 
 };
+
+#endif // CSPRITE_H

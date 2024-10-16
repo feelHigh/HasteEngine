@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CKEYMGR_H
+#define CKEYMGR_H
 
 enum class KEY
 {
@@ -67,3 +68,5 @@ private:
 	bool				m_MouseCapture;
 
 };
+
+#endif

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CTRANSFORM_H
+#define CTRANSFORM_H
+
 #include "CComponent.h"
 
 class CTransform :
@@ -54,3 +56,5 @@ private:
     bool    m_IndependentScale; // 부모의 크기에 영향받지 않음
 
 };
+
+#endif // CTRANSFORM_H

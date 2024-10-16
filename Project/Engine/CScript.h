@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CSCRIPT_H
+#define CSCRIPT_H
+
 #include "CComponent.h"
 
 #include "components.h"
@@ -64,3 +66,5 @@ protected:
     void Instantiate(Ptr<CPrefab> _Pref, int _LayerIdx, Vec3 _WorldPos, const wstring& _Name = L"");
 
 };
+
+#endif

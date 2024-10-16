@@ -43,7 +43,7 @@ CGameObject::CGameObject(const CGameObject& _Origin)
 
 		AddComponent(pClonedCom);
 
-		pClonedCom->Init();
+		pClonedCom->Initialize();
 	}
 
 	// Clone Script

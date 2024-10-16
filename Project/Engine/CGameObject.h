@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CGAMEOBJECT_H
+#define CGAMEOBJECT_H
+
 #include "CEntity.h"
 
 class CComponent;
@@ -70,3 +72,5 @@ private:
     bool                    m_Dead;
 
 };
+
+#endif

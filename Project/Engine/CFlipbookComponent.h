@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CFLIPBOOKCOMPONENT_H
+#define CFLIPBOOKCOMPONENT_H
+
 #include "CComponent.h"
 
 #include "CFlipbook.h"
@@ -39,3 +41,5 @@ private:
     bool                    m_Finish;       // Flipbook 재생이 끝에 도달했는지 여부
 
 };
+
+#endif

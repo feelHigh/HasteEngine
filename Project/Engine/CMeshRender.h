@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CMESHRENDER_H
+#define CMESHRENDER_H
+
 #include "CRenderComponent.h"
 
 class CMeshRender :
@@ -18,3 +20,5 @@ public:
     virtual void LoadFromFile(FILE* _File) override;
 
 };
+
+#endif

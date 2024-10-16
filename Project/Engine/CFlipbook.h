@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CFLIPBOOK_H
+#define CFLIPBOOK_H
+
 #include "CAsset.h"
 
 #include "CSprite.h"
@@ -26,3 +28,5 @@ private:
     vector<Ptr<CSprite>>    m_vecSprite;
 
 };
+
+#endif

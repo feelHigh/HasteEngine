@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CASSETMGR_H
+#define CASSETMGR_H
+
 #include "CPathMgr.h"
 #include "CTaskMgr.h"
 
@@ -150,3 +152,5 @@ void LoadAssetRef(Ptr<T>& Asset, FILE* _File)
 		Asset = CAssetMgr::GetInstance()->Load<T>(key, relativepath);
 	}
 }
+
+#endif

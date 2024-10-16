@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CLIGHT3D_H
+#define CLIGHT3D_H
+
 #include "CComponent.h"
 
 class CLight3D :
@@ -36,3 +38,5 @@ private:
     tLightInfo      m_Info;
 
 };
+
+#endif

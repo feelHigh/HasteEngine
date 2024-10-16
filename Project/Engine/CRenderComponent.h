@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CRENDERCOMPONENT_H
+#define CRENDERCOMPONENT_H
+
 #include "CComponent.h"
 
 class CRenderComponent :
@@ -37,3 +39,5 @@ protected:
     void LoadDataFromFile(FILE* _File);
 
 };
+
+#endif

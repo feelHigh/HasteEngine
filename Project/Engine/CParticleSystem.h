@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CPARTICLESYSTEM_H
+#define CPARTICLESYSTEM_H
+
 #include "CRenderComponent.h"
 
 #include "CParticleTick.h"
@@ -47,3 +49,5 @@ private:
     tParticleModule         m_Module;               // 파티클의 기능 정의
 
 };
+
+#endif

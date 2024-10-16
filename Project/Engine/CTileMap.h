@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CTILEMAP_H
+#define CTILEMAP_H
+
 #include "CRenderComponent.h"
 
 class CStructuredBuffer;
@@ -54,3 +56,5 @@ private:
     void ChangeTileMapSize();
 
 };
+
+#endif // CTILEMAP_H

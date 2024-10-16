@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CPARTICLETICK_H
+#define CPARTICLETICK_H
+
 #include "CComputeShader.h"
 
 class CStructuredBuffer;
@@ -32,3 +34,5 @@ private:
     Vec3                m_ParticleWorldPos;
 
 };
+
+#endif

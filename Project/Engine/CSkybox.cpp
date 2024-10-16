@@ -45,7 +45,7 @@ void CSkybox::Render()
 {
 	Transform()->Binding();
 
-	GetMaterial()->SetScalarParametereter(INT_0, (int)m_Type);
+	GetMaterial()->SetScalarParameter(INT_0, (int)m_Type);
 
 	if (m_Type == SPHERE)
 	{

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CLIGHT2D_H
+#define CLIGHT2D_H
+
 #include "CComponent.h"
 
 class CLight2D :
@@ -35,3 +37,5 @@ private:
     tLightInfo      m_Info;
 
 };
+
+#endif

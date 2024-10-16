@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CCOMPUTESHADER_H
+#define CCOMPUTESHADER_H
+
 #include "CShader.h"
 
 class CComputeShader :
@@ -38,3 +40,5 @@ protected:
     tMtrlConst                  m_Const;
 
 };
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPATHMGR_H
+#define CPATHMGR_H
 
 class CPathMgr
 	: public CSingleton<CPathMgr>
@@ -20,3 +21,5 @@ private:
 	wstring		m_Solution;
 
 };
+
+#endif

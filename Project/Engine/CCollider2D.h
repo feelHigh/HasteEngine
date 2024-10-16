@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CCOLLIDER2D_H
+#define CCOLLIDER2D_H
+
 #include "CComponent.h"
 
 class CCollider2D :
@@ -42,3 +44,5 @@ private:
     bool    m_IndependentScale; // 오브젝트의 크기에 영향을 받을지 여부
 
 };
+
+#endif

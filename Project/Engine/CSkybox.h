@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CSKYBOX_H
+#define CSKYBOX_H
+
 #include "CRenderComponent.h"
 
 enum SKYBOX_TYPE
@@ -32,3 +34,5 @@ private:
     Ptr<CTexture>   m_SkyboxTex;
 
 };
+
+#endif

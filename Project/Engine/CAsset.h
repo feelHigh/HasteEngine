@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CASSET_H
+#define CASSET_H
+
 #include "CEntity.h"
 
 class CAsset :
@@ -53,3 +55,5 @@ protected:
     void SetRelativePath(const wstring& _path) { m_RelativePath = _path; }
 
 };
+
+#endif

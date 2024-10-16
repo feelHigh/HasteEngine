@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CTASKMGR_H
+#define CTASKMGR_H
 
 class CTaskMgr
 	: public CSingleton<CTaskMgr>
@@ -19,3 +20,5 @@ private:
 	vector<CGameObject*>	m_GC;	// Garbage Collector
 
 };
+
+#endif // CTASKMGR_H

@@ -1,6 +1,8 @@
 #pragma once
 #include "CComponentUI.h"
 
+class CScript;
+
 class CScriptUI :
     public CComponentUI
 {
