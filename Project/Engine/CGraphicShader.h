@@ -41,10 +41,10 @@ public:
     BLEND_STATE_TYPE GetBlendStateType() { return m_BSType; }
 
     void AddScalarParam(SCALAR_PARAMETER _Type, const string& _Desc) { m_ScalarParam.push_back(tScalarParam{ _Type, _Desc }); }
-    void AddTexParam(TEXTURE_PARAMETER _Type, const string& _Desc) { m_TexParam.push_back(tTexParam{ _Type, _Desc }); }
+    void AddTextureParam(TEXTURE_PARAMETER _Type, const string& _Desc) { m_TexParam.push_back(tTexParam{ _Type, _Desc }); }
 
     const vector<tScalarParam>& GetScalarParam() { return m_ScalarParam; }
-    const vector<tTexParam>& GetTexParam() { return m_TexParam; }
+    const vector<tTexParam>& GetTextureParam() { return m_TexParam; }
 
 private:
     ComPtr<ID3DBlob>			    m_VSBlob;

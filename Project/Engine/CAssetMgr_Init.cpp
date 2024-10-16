@@ -533,7 +533,7 @@ void CAssetMgr::CreateEngineGraphicShader()
 
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_MASKED);
 
-	pShader->AddTexParam(TEX_0, "OutputTexture");
+	pShader->AddTextureParam(TEX_0, "OutputTexture");
 
 	AddAsset(L"Std2DShader", pShader);
 
@@ -659,8 +659,8 @@ void CAssetMgr::CreateEngineGraphicShader()
 	pShader->SetDepthStencilStateType(DEPTH_STENCIL_STATE_TYPE::LESS);
 	pShader->SetBlendStateType(BLEND_STATE_TYPE::DEFAULT);
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_OPAQUE);
-	pShader->AddTexParam(TEX_0, "Albedo Texture");
-	pShader->AddTexParam(TEX_1, "Normal Texture");
+	pShader->AddTextureParam(TEX_0, "Albedo Texture");
+	pShader->AddTextureParam(TEX_1, "Normal Texture");
 	AddAsset(L"Std3DShader", pShader);
 
 	// SkyBoxShader
@@ -672,7 +672,7 @@ void CAssetMgr::CreateEngineGraphicShader()
 	pShader->SetBlendStateType(BLEND_STATE_TYPE::DEFAULT);
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_OPAQUE);
 
-	pShader->AddTexParam(TEX_0, "Albedo Texture");
+	pShader->AddTextureParam(TEX_0, "Albedo Texture");
 
 	AddAsset(L"SkyBoxShader", pShader);
 }

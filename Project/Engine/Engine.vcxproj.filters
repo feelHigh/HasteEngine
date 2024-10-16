@@ -847,6 +847,9 @@
     <FxCompile Include="SetColor.fx">
       <Filter>Shader Code\Compute</Filter>
     </FxCompile>
+    <FxCompile Include="postprocess.fx">
+      <Filter>Shader Code\Render\FX</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">

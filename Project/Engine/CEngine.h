@@ -19,6 +19,6 @@ public:
 private:
 	HWND			m_hWnd;
 	POINT			m_ptResolution;
-	FMOD::System* m_FMODSystem;  // FMOD 관리자 클래스
+	FMOD::System*	m_FMODSystem;  // FMOD 관리자 클래스
 
 };

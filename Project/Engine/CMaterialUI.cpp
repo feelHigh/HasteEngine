@@ -91,7 +91,7 @@ void CMaterialUI::ShaderParameter()
 
 	// Shader 가 요구하는 파라미터 목록을 가져온다.
 	const vector<tScalarParam>& vecScalarParam = pShader->GetScalarParam();
-	const vector<tTexParam>& vecTexParam = pShader->GetTexParam();
+	const vector<tTexParam>& vecTexParam = pShader->GetTextureParam();
 
 	// Scalar 파라미터 대응
 	for (size_t i = 0; i < vecScalarParam.size(); ++i)

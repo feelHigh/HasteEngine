@@ -21,6 +21,7 @@
 CEngine::CEngine()
 	: m_hWnd(nullptr)
 	, m_ptResolution{}
+	, m_FMODSystem(nullptr)
 {
 }
 
