@@ -1,0 +1,4 @@
+framework.h
+pch.h
+CScriptMgr.h
+HHEditorCameraScript.h
