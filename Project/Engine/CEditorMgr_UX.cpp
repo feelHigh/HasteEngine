@@ -147,7 +147,7 @@ void CEditorMgr::ObserveContent()
     if (dwStatus == WAIT_OBJECT_0)
     {
         // Content 폴더에 있는 모든 에셋과 메모리에 로딩되어있는 에셋을 동기화
-        CContentDrawer* pContent = (CContentDrawer*)FindEditor("Content");
+        CContentDrawer* pContent = (CContentDrawer*)FindEditor("Content Drawer");
         pContent->Reload();
 
         // 다시 Content 폴더에 변경점이 발생하는지 확인하도록 함
@@ -162,7 +162,7 @@ void CEditorMgr::CreateEditorUI()
     // Content
     pUI = new CContentDrawer;
     pUI->Initialize();
-    pUI->SetName("Content");
+    pUI->SetName("Content Drawer");
     m_mapUI.insert(make_pair(pUI->GetName(), pUI));
 
     // Outliner
