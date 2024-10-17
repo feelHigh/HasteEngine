@@ -6,6 +6,7 @@ class CGameObject;
 class CLight2D;
 class CLight3D;
 class CStructuredBuffer;
+class CMRT;
 
 class CRenderMgr :
     public CSingleton<CRenderMgr>
@@ -25,10 +26,13 @@ public:
 
     CCamera* GetPOVCam();
 
+    CMRT* GetMRT(MRT_TYPE _Type) { return m_arrMRT[(UINT)_Type]; }
+
 private:
     void RenderStart();
     void Clear();
     void RenderDebugShape();
+    void CreateMRT();
 
 private:
     vector<CCamera*>        m_vecCam;
@@ -50,4 +54,6 @@ private:
     // DownScale
     Ptr<CTexture>           m_DownScaleTex;
 
+    // MRT
+    CMRT*                   m_arrMRT[(UINT)MRT_TYPE::END];
 };

@@ -564,6 +564,9 @@
     <ClInclude Include="ImGui\ImGuizmo\ImZoomSlider.h">
       <Filter>04. Manager\10. Editor Manager\ImGui\ImGuizmo</Filter>
     </ClInclude>
+    <ClInclude Include="CMRT.h">
+      <Filter>Module</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -853,6 +856,12 @@
     </ClCompile>
     <ClCompile Include="ImGui\ImGuizmo\ImSequencer.cpp">
       <Filter>04. Manager\10. Editor Manager\ImGui\ImGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="CMRT.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="CRenderMgr_Init.cpp">
+      <Filter>04. Manager\06. Render Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

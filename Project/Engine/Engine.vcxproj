@@ -216,6 +216,7 @@ call EngineCopy.bat</Command>
     <ClInclude Include="CMesh.h" />
     <ClInclude Include="CMeshRender.h" />
     <ClInclude Include="CMeshRenderUI.h" />
+    <ClInclude Include="CMRT.h" />
     <ClInclude Include="components.h" />
     <ClInclude Include="COutliner.h" />
     <ClInclude Include="CParameterUI.h" />
@@ -323,6 +324,7 @@ call EngineCopy.bat</Command>
     <ClCompile Include="CMesh.cpp" />
     <ClCompile Include="CMeshRender.cpp" />
     <ClCompile Include="CMeshRenderUI.cpp" />
+    <ClCompile Include="CMRT.cpp" />
     <ClCompile Include="COutliner.cpp" />
     <ClCompile Include="CParameterUI.cpp" />
     <ClCompile Include="CParticleSystem.cpp" />
@@ -333,6 +335,7 @@ call EngineCopy.bat</Command>
     <ClCompile Include="CPrefabUI.cpp" />
     <ClCompile Include="CRenderComponent.cpp" />
     <ClCompile Include="CRenderMgr.cpp" />
+    <ClCompile Include="CRenderMgr_Init.cpp" />
     <ClCompile Include="CScript.cpp" />
     <ClCompile Include="CScriptUI.cpp" />
     <ClCompile Include="CSetColorCS.cpp" />

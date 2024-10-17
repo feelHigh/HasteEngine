@@ -22,6 +22,9 @@
 #include "CTransform.h"
 #include "CRenderComponent.h"
 
+// Module Headers
+#include "CMRT.h"
+
 CCamera::CCamera()
 	: CComponent(COMPONENT_TYPE::CAMERA)
 	, m_Priority(-1)
@@ -216,21 +219,9 @@ void CCamera::Render()
 
 void CCamera::Render_Effect()
 {
-	// ·»´õÅ¸°Ù º¯°æ
-	Ptr<CTexture> pEffectTarget = CAssetMgr::GetInstance()->FindAsset<CTexture>(L"EffectTargetTex");
-	Ptr<CTexture> pEffectDepth = CAssetMgr::GetInstance()->FindAsset<CTexture>(L"EffectDepthStencilTex");
-
-	// Å¬¸®¾î
-	CONTEXT->ClearRenderTargetView(pEffectTarget->GetRTV().Get(), Vec4(0.f, 0.f, 0.f, 0.f));
-	CONTEXT->ClearDepthStencilView(pEffectDepth->GetDSV().Get(), D3D11_CLEAR_STENCIL | D3D11_CLEAR_DEPTH, 1.f, 0);
-
-	D3D11_VIEWPORT viewport = {};
-	viewport.Width = pEffectTarget->Width();
-	viewport.Height = pEffectTarget->Height();
-	viewport.MaxDepth = 1.f;
-
-	CONTEXT->RSSetViewports(1, &viewport);
-	CONTEXT->OMSetRenderTargets(1, pEffectTarget->GetRTV().GetAddressOf(), pEffectDepth->GetDSV().Get());
+	// EffectMRT ·Î º¯°æ
+	CRenderMgr::GetInstance()->GetMRT(MRT_TYPE::EFFECT)->Clear();
+	CRenderMgr::GetInstance()->GetMRT(MRT_TYPE::EFFECT)->OMSet();
 
 	// Effect
 	for (size_t i = 0; i < m_vecEffect.size(); ++i)
@@ -238,35 +229,23 @@ void CCamera::Render_Effect()
 		m_vecEffect[i]->Render();
 	}
 
-	// BlurTarget À¸·Î º¯°æ
-	Ptr<CTexture> pEffectBlurTarget = CAssetMgr::GetInstance()->FindAsset<CTexture>(L"EffectBlurTargetTex");
+	// EffectBlurMRT ·Î º¯°æ
+	CRenderMgr::GetInstance()->GetMRT(MRT_TYPE::EFFECT_BLUR)->ClearRenderTargetView();
+	CRenderMgr::GetInstance()->GetMRT(MRT_TYPE::EFFECT_BLUR)->OMSet();
+
 	Ptr<CMaterial> pBlurMtrl = CAssetMgr::GetInstance()->FindAsset<CMaterial>(L"BlurMtrl");
 	Ptr<CMesh> pRectMesh = CAssetMgr::GetInstance()->FindAsset<CMesh>(L"RectMesh");
 
-	CONTEXT->ClearRenderTargetView(pEffectBlurTarget->GetRTV().Get(), Vec4(0.f, 0.f, 0.f, 0.f));
-
-	CONTEXT->RSSetViewports(1, &viewport);
-	CONTEXT->OMSetRenderTargets(1, pEffectBlurTarget->GetRTV().GetAddressOf(), nullptr);
-
-	pBlurMtrl->SetTextureParameter(TEX_0, pEffectTarget);
+	pBlurMtrl->SetTextureParameter(TEX_0, CRenderMgr::GetInstance()->GetMRT(MRT_TYPE::EFFECT)->GetRT(0));
 	pBlurMtrl->Binding();
 	pRectMesh->Render_Particle(2);
 
-	// ¿ø·¡ ·»´õÅ¸°ÙÀ¸·Î º¯°æ
-	Ptr<CTexture> pRTTex = CAssetMgr::GetInstance()->FindAsset<CTexture>(L"RenderTargetTex");
-	Ptr<CTexture> pDSTex = CAssetMgr::GetInstance()->FindAsset<CTexture>(L"DepthStencilTex");
+	// ¿ø·¡ ·»´õÅ¸°Ù(SwapChainMRT) ·Î º¯°æ	
+	CRenderMgr::GetInstance()->GetMRT(MRT_TYPE::SWAPCHAIN)->OMSet();
 	Ptr<CMaterial> pEffectMergeMtrl = CAssetMgr::GetInstance()->FindAsset<CMaterial>(L"EffectMergeMtrl");
 
-	viewport.Width = pRTTex->Width();
-	viewport.Height = pRTTex->Height();
-	viewport.MinDepth = 0.f;
-	viewport.MaxDepth = 1.f;
-
-	CONTEXT->RSSetViewports(1, &viewport);
-	CONTEXT->OMSetRenderTargets(1, pRTTex->GetRTV().GetAddressOf(), pDSTex->GetDSV().Get());
-
-	pEffectMergeMtrl->SetTextureParameter(TEX_0, pEffectTarget);
-	pEffectMergeMtrl->SetTextureParameter(TEX_1, pEffectBlurTarget);
+	pEffectMergeMtrl->SetTextureParameter(TEX_0, CRenderMgr::GetInstance()->GetMRT(MRT_TYPE::EFFECT)->GetRT(0));
+	pEffectMergeMtrl->SetTextureParameter(TEX_1, CRenderMgr::GetInstance()->GetMRT(MRT_TYPE::EFFECT_BLUR)->GetRT(0));
 	pEffectMergeMtrl->Binding();
 	pRectMesh->Render();
 }

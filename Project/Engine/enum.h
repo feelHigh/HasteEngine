@@ -194,3 +194,16 @@ enum class PARTICLE_MODULE
 
 	END,
 };
+
+enum class MRT_TYPE
+{
+	SWAPCHAIN,
+	EFFECT,
+	EFFECT_BLUR,
+
+	DEFERRED,	// 5°³
+	LIGHT,		// 3°³
+	SHADOWMAP,  // 1°³
+
+	END,
+};
