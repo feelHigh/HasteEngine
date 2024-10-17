@@ -11,4 +11,7 @@ public:
 public:
     virtual void Update() override;
 
+private:
+    void SelectLightType(LIGHT_TYPE SelectLight);
+
 };
