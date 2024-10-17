@@ -663,6 +663,18 @@ void CAssetMgr::CreateEngineGraphicShader()
 	pShader->AddTextureParam(TEX_1, "Normal Texture");
 	AddAsset(L"Std3DShader", pShader);
 
+	// Std3D_DeferredShader
+	pShader = new CGraphicShader;
+	pShader->CreateVertexShader(L"Shader\\std3d_deferred.fx", "VS_Std3D_Deferred");
+	pShader->CreatePixelShader(L"Shader\\std3d_deferred.fx", "PS_Std3D_Deferred");
+	pShader->SetRasterizerStateType(RASTERIZER_STATE_TYPE::CULL_BACK);
+	pShader->SetDepthStencilStateType(DEPTH_STENCIL_STATE_TYPE::LESS);
+	pShader->SetBlendStateType(BLEND_STATE_TYPE::DEFAULT);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_DEFERRED);
+	pShader->AddTextureParam(TEX_0, "Albedo Texture");
+	pShader->AddTextureParam(TEX_1, "Normal Texture");
+	AddAsset(L"Std3D_DeferredShader", pShader);
+
 	// SkyBoxShader
 	pShader = new CGraphicShader;
 	pShader->CreateVertexShader(L"Shader\\skybox.fx", "VS_SkyBox");
@@ -755,6 +767,11 @@ void CAssetMgr::CreateEngineMaterial()
 	pMtrl = new CMaterial(true);
 	pMtrl->SetShader(FindAsset<CGraphicShader>(L"Std3DShader"));
 	AddAsset(L"Std3DMtrl", pMtrl);
+
+	// Std3D_DeferredMtrl
+	pMtrl = new CMaterial(true);
+	pMtrl->SetShader(FindAsset<CGraphicShader>(L"Std3D_DeferredShader"));
+	AddAsset(L"Std3D_DeferredMtrl", pMtrl);
 
 	// SkyBoxMtrl
 	pMtrl = new CMaterial(true);

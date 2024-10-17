@@ -105,6 +105,27 @@ void CCamera::FinalTick()
 	}
 }
 
+void CCamera::Render()
+{
+	// Opaque
+	for (size_t i = 0; i < m_vecOpaque.size(); ++i)
+	{
+		m_vecOpaque[i]->Render();
+	}
+
+	// Masked
+	for (size_t i = 0; i < m_vecMasked.size(); ++i)
+	{
+		m_vecMasked[i]->Render();
+	}
+
+	// Transparent
+	for (size_t i = 0; i < m_vecTransparent.size(); ++i)
+	{
+		m_vecTransparent[i]->Render();
+	}
+}
+
 void CCamera::SortGameObject()
 {
 	CLevel* pLevel = CLevelMgr::GetInstance()->GetCurrentLevel();
@@ -134,6 +155,9 @@ void CCamera::SortGameObject()
 
 			switch (Domain)
 			{
+			case DOMAIN_DEFERRED:
+				m_vecDeferred.push_back(vecObjects[j]);
+				break;
 			case DOMAIN_OPAQUE:
 				m_vecOpaque.push_back(vecObjects[j]);
 				break;
@@ -160,61 +184,40 @@ void CCamera::SortGameObject()
 	}
 }
 
-void CCamera::Render()
+void CCamera::Render_Deferred()
 {
-	// 오브젝트 분류
-	SortGameObject();
+	// Deferred
+	for (size_t i = 0; i < m_vecOpaque.size(); ++i)
+	{
+		m_vecDeferred[i]->Render();
+	}
+}
 
-	// 물체가 렌더링될 때 사용할 View, Proj 행렬
-	g_Trans.matView = m_matView;
-	g_Trans.matProj = m_matProj;
-
+void CCamera::Render_Opaque()
+{
 	// Opaque
 	for (size_t i = 0; i < m_vecOpaque.size(); ++i)
 	{
 		m_vecOpaque[i]->Render();
 	}
+}
 
+void CCamera::Render_Masked()
+{
 	// Masked
 	for (size_t i = 0; i < m_vecMasked.size(); ++i)
 	{
 		m_vecMasked[i]->Render();
 	}
+}
 
+void CCamera::Render_Transparent()
+{
 	// Transparent
 	for (size_t i = 0; i < m_vecTransparent.size(); ++i)
 	{
 		m_vecTransparent[i]->Render();
 	}
-
-	// Particles
-	for (size_t i = 0; i < m_vecParticles.size(); ++i)
-	{
-		m_vecParticles[i]->Render();
-	}
-
-	Render_Effect();
-
-	// PostProcess 
-	for (size_t i = 0; i < m_vecPostProcess.size(); ++i)
-	{
-		CRenderMgr::GetInstance()->PostProcessCopy();
-		m_vecPostProcess[i]->Render();
-	}
-
-	// UI
-	for (size_t i = 0; i < m_vecUI.size(); ++i)
-	{
-		m_vecUI[i]->Render();
-	}
-
-	m_vecOpaque.clear();
-	m_vecMasked.clear();
-	m_vecTransparent.clear();
-	m_vecEffect.clear();
-	m_vecParticles.clear();
-	m_vecPostProcess.clear();
-	m_vecUI.clear();
 }
 
 void CCamera::Render_Effect()
@@ -248,6 +251,45 @@ void CCamera::Render_Effect()
 	pEffectMergeMtrl->SetTextureParameter(TEX_1, CRenderMgr::GetInstance()->GetMRT(MRT_TYPE::EFFECT_BLUR)->GetRT(0));
 	pEffectMergeMtrl->Binding();
 	pRectMesh->Render();
+}
+
+void CCamera::Render_Particle()
+{
+	// Particles
+	for (size_t i = 0; i < m_vecParticles.size(); ++i)
+	{
+		m_vecParticles[i]->Render();
+	}
+}
+
+void CCamera::Render_Postprocess()
+{
+	// PostProcess 
+	for (size_t i = 0; i < m_vecPostProcess.size(); ++i)
+	{
+		CRenderMgr::GetInstance()->PostProcessCopy();
+		m_vecPostProcess[i]->Render();
+	}
+}
+
+void CCamera::Render_UI()
+{
+	// UI
+	for (size_t i = 0; i < m_vecUI.size(); ++i)
+	{
+		m_vecUI[i]->Render();
+	}
+}
+
+void CCamera::Clear()
+{
+	m_vecOpaque.clear();
+	m_vecMasked.clear();
+	m_vecTransparent.clear();
+	m_vecEffect.clear();
+	m_vecParticles.clear();
+	m_vecPostProcess.clear();
+	m_vecUI.clear();
 }
 
 void CCamera::SaveToFile(FILE* _File)

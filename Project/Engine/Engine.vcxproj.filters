@@ -895,6 +895,9 @@
     <FxCompile Include="postprocess.fx">
       <Filter>Shader Code\Render\FX</Filter>
     </FxCompile>
+    <FxCompile Include="std3d_deferred.fx">
+      <Filter>Shader Code\Render\FX</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">

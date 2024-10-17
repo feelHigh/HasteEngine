@@ -63,12 +63,15 @@ void CRenderMgr::Tick()
 	// Level 이 Player 상태인 경우, Level 내에 있는 카메라 시점으로 렌더링하기
 	if (PLAY == pCurLevel->GetState())
 	{
-		for (size_t i = 0; i < m_vecCam.size(); ++i)
+		if (nullptr != m_vecCam[0])
+			Render(m_vecCam[0]);
+
+		for (size_t i = 1; i < m_vecCam.size(); ++i)
 		{
 			if (nullptr == m_vecCam[i])
 				continue;
 
-			m_vecCam[i]->Render();
+			Render_Sub(m_vecCam[1]);
 		}
 	}
 
@@ -77,7 +80,7 @@ void CRenderMgr::Tick()
 	{
 		if (nullptr != m_EditorCamera)
 		{
-			m_EditorCamera->Render();
+			Render(m_EditorCamera);
 		}
 	}
 
@@ -197,6 +200,60 @@ void CRenderMgr::RenderStart()
 	pGlobalCB->Binding();
 }
 
+void CRenderMgr::Render(CCamera* _Cam)
+{
+	// 오브젝트 분류
+	_Cam->SortGameObject();
+
+	// 카메라 변환행렬 설정
+	// 물체가 렌더링될 때 사용할 View, Projection 행렬
+	g_Trans.matView = _Cam->GetViewMatrix();
+	g_Trans.matProj = _Cam->GetProjectionMatrix();
+
+	// MRT 모두 클리어
+	ClearMRT();
+
+	// ==================
+	// DEFERRED RENDERING
+	// ==================
+	m_arrMRT[(UINT)MRT_TYPE::DEFERRED]->OMSet();
+	_Cam->Render_Deferred();
+
+	// ===============
+	// LIGHT RENDERING
+	// ===============
+	m_arrMRT[(UINT)MRT_TYPE::LIGHT]->OMSet();
+
+	for (size_t i = 0; i < m_vecLight3D.size(); ++i)
+	{
+		//m_vecLight3D[i]->Render();
+	}
+
+	// ===================================
+	// MERGE ALBEDO + LIGHTS ==> SwapChain
+	// ===================================
+	m_arrMRT[(UINT)MRT_TYPE::SWAPCHAIN]->OMSet();
+
+	// =================
+	// FORWARD RENDERING
+	// =================
+	// 분류된 물체들 렌더링
+	_Cam->Render_Opaque();
+	_Cam->Render_Masked();
+	_Cam->Render_Effect();
+	_Cam->Render_Transparent();
+	_Cam->Render_Particle();
+	_Cam->Render_Postprocess();
+	_Cam->Render_UI();
+
+	// 정리
+	_Cam->Clear();
+}
+
+void CRenderMgr::Render_Sub(CCamera* _Cam)
+{
+}
+
 void CRenderMgr::Clear()
 {
 	m_vecLight2D.clear();
@@ -255,4 +312,11 @@ void CRenderMgr::RenderDebugShape()
 			++iter;
 		}
 	}
+}
+
+void CRenderMgr::ClearMRT()
+{
+	m_arrMRT[(UINT)MRT_TYPE::SWAPCHAIN]->Clear();
+	m_arrMRT[(UINT)MRT_TYPE::DEFERRED]->ClearRenderTargetView();
+	m_arrMRT[(UINT)MRT_TYPE::LIGHT]->ClearRenderTargetView();
 }

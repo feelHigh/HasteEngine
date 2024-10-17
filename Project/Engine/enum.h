@@ -123,15 +123,19 @@ enum TEXTURE_PARAMETER
 
 enum SHADER_DOMAIN
 {
-	DOMAIN_OPAQUE,		// 불투명
-	DOMAIN_MASKED,		// 투명, 불투명
-	DOMAIN_TRANSPARENT, // 반투명
-	DOMAIN_PARTICLE,	// 파티클
-	DOMAIN_EFFECT,		// 2D 이펙트
-	DOMAIN_POSTPROCESS, // 후처리
+	DOMAIN_DEFERRED,	// Deferred 
+	DOMAIN_LIGHT,		// Light
+	DOMAIN_DECAL,		// Decal
+
+	DOMAIN_OPAQUE,		// Not Clear
+	DOMAIN_MASKED,		// Clear & Not Clear
+	DOMAIN_TRANSPARENT, // Transparent
+	DOMAIN_PARTICLE,	// Particle
+	DOMAIN_EFFECT,		// 2D Effects
+	DOMAIN_POSTPROCESS, // Postprocess
 	DOMAIN_UI,			// UI
-	DOMAIN_DEBUG,		// 디버그
-	DOMAIN_NONE,		// 미설정
+	DOMAIN_DEBUG,		// Debug
+	DOMAIN_NONE,		// None
 };
 
 enum class DEBUG_SHAPE
@@ -202,7 +206,7 @@ enum class MRT_TYPE
 	EFFECT_BLUR,
 
 	DEFERRED,	// 5개
-	LIGHT,		// 3개
+	LIGHT,		// 2개
 	SHADOWMAP,  // 1개
 
 	END,

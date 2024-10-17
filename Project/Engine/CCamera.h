@@ -19,6 +19,8 @@ public:
     CCamera();
     ~CCamera();
 
+    friend class CRenderMgr;
+
 public:
     virtual void Begin() override;
     virtual void FinalTick() override;
@@ -68,13 +70,26 @@ public:
     void SetScale(float _Scale) { m_ProjectionScale = _Scale; }
     float GetScale() { return m_ProjectionScale; }
 
+    const Matrix& GetViewMatrix() { return m_matView; }
+    const Matrix& GetProjectionMatrix() { return m_matProj; }
+
 public:
     virtual void SaveToFile(FILE* _File) override;
     virtual void LoadFromFile(FILE* _File) override;
 
 private:
     void SortGameObject();
+
+    void Render_Deferred();
+    void Render_Opaque();
+    void Render_Masked();
+    void Render_Transparent();
     void Render_Effect();
+    void Render_Particle();
+    void Render_Postprocess();
+    void Render_UI();
+
+    void Clear();
 
 private:
     int                     m_Priority;
@@ -92,6 +107,7 @@ private:
     Matrix                  m_matView;
     Matrix                  m_matProj;
 
+    vector<CGameObject*>    m_vecDeferred;      // Deferred
     vector<CGameObject*>    m_vecOpaque;        // 불투명
     vector<CGameObject*>    m_vecMasked;        // 불투명, 투명
     vector<CGameObject*>    m_vecTransparent;   // 투명, 반투명
