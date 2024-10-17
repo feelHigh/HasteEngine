@@ -1,3 +1,4 @@
+#include "../../pch.h"
 // https://github.com/CedricGuillemet/ImGuizmo
 // v 1.83
 //
@@ -24,11 +25,12 @@
 // SOFTWARE.
 //
 
-#include "imgui.h"
 #ifndef IMGUI_DEFINE_MATH_OPERATORS
 #define IMGUI_DEFINE_MATH_OPERATORS
 #endif
-#include "imgui_internal.h"
+
+#include "../imgui.h"
+#include "../imgui_internal.h"
 #include "ImGuizmo.h"
 
 #if defined(_MSC_VER) || defined(__MINGW32__)
@@ -2728,3 +2730,5 @@ namespace ImGuizmo
       ComputeContext(svgView.m16, svgProjection.m16, gContext.mModelSource.m16, gContext.mMode);
    }
 };
+
+#include "pch.h"

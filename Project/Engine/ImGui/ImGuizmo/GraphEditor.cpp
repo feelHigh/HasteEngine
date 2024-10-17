@@ -1,3 +1,4 @@
+#include "../../pch.h"
 // https://github.com/CedricGuillemet/ImGuizmo
 // v 1.83
 //
@@ -24,9 +25,12 @@
 // SOFTWARE.
 //
 
-#include "imgui.h"
+#ifndef IMGUI_DEFINE_MATH_OPERATORS
 #define IMGUI_DEFINE_MATH_OPERATORS
-#include "imgui_internal.h"
+#endif
+
+#include "../imgui.h"
+#include "../imgui_internal.h"
 #include <math.h>
 #include <vector>
 #include <float.h>
@@ -1108,3 +1112,5 @@ bool EditOptions(Options& options)
 }
 
 } // namespace
+
+#include "pch.h"

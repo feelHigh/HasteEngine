@@ -1,3 +1,4 @@
+#include "../../pch.h"
 // https://github.com/CedricGuillemet/ImGuizmo
 // v 1.83
 //
@@ -24,8 +25,8 @@
 // SOFTWARE.
 //
 #include "ImSequencer.h"
-#include "imgui.h"
-#include "imgui_internal.h"
+#include "../imgui.h"
+#include "../imgui_internal.h"
 #include <cstdlib>
 
 namespace ImSequencer
@@ -686,3 +687,5 @@ namespace ImSequencer
       return ret;
    }
 }
+
+#include "pch.h"

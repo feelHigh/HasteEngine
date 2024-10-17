@@ -169,9 +169,6 @@
     <Filter Include="04. Manager\10. Editor Manager">
       <UniqueIdentifier>{0922e7a9-600d-4733-a4fa-ad3a48c61a15}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04. Manager\10. Editor Manager\ImGui">
-      <UniqueIdentifier>{93762cb8-11b1-4083-a863-a93506ff8fa6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="09. Editor\Inspector">
       <UniqueIdentifier>{e0076684-15eb-45f6-ac7c-849c1c48f761}</UniqueIdentifier>
     </Filter>
@@ -253,7 +250,10 @@
     <Filter Include="09. Editor\Menu">
       <UniqueIdentifier>{7e95959f-f33f-41f1-a0ce-bc086a938482}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04. Manager\10. Editor Manager\ImGui\ImGuizmo">
+    <Filter Include="Module\ImGui">
+      <UniqueIdentifier>{93762cb8-11b1-4083-a863-a93506ff8fa6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Module\ImGui\ImGuizmo">
       <UniqueIdentifier>{5093b6f6-419c-4f34-9010-c814c66181df}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -427,28 +427,28 @@
       <Filter>04. Manager\10. Editor Manager</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imstb_truetype.h">
-      <Filter>04. Manager\10. Editor Manager\ImGui</Filter>
+      <Filter>Module\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imconfig.h">
-      <Filter>04. Manager\10. Editor Manager\ImGui</Filter>
+      <Filter>Module\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imgui.h">
-      <Filter>04. Manager\10. Editor Manager\ImGui</Filter>
+      <Filter>Module\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imgui_impl_dx11.h">
-      <Filter>04. Manager\10. Editor Manager\ImGui</Filter>
+      <Filter>Module\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imgui_impl_win32.h">
-      <Filter>04. Manager\10. Editor Manager\ImGui</Filter>
+      <Filter>Module\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imgui_internal.h">
-      <Filter>04. Manager\10. Editor Manager\ImGui</Filter>
+      <Filter>Module\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imstb_rectpack.h">
-      <Filter>04. Manager\10. Editor Manager\ImGui</Filter>
+      <Filter>Module\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imstb_textedit.h">
-      <Filter>04. Manager\10. Editor Manager\ImGui</Filter>
+      <Filter>Module\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="CGameObjectEx.h">
       <Filter>07. GameObject</Filter>
@@ -547,22 +547,22 @@
       <Filter>09. Editor\Module</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\ImGuizmo\GraphEditor.h">
-      <Filter>04. Manager\10. Editor Manager\ImGui\ImGuizmo</Filter>
+      <Filter>Module\ImGui\ImGuizmo</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\ImGuizmo\ImCurveEdit.h">
-      <Filter>04. Manager\10. Editor Manager\ImGui\ImGuizmo</Filter>
+      <Filter>Module\ImGui\ImGuizmo</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\ImGuizmo\ImGradient.h">
-      <Filter>04. Manager\10. Editor Manager\ImGui\ImGuizmo</Filter>
+      <Filter>Module\ImGui\ImGuizmo</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\ImGuizmo\ImGuizmo.h">
-      <Filter>04. Manager\10. Editor Manager\ImGui\ImGuizmo</Filter>
+      <Filter>Module\ImGui\ImGuizmo</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\ImGuizmo\ImSequencer.h">
-      <Filter>04. Manager\10. Editor Manager\ImGui\ImGuizmo</Filter>
+      <Filter>Module\ImGui\ImGuizmo</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\ImGuizmo\ImZoomSlider.h">
-      <Filter>04. Manager\10. Editor Manager\ImGui\ImGuizmo</Filter>
+      <Filter>Module\ImGui\ImGuizmo</Filter>
     </ClInclude>
     <ClInclude Include="CMRT.h">
       <Filter>Module</Filter>
@@ -717,22 +717,22 @@
       <Filter>04. Manager\10. Editor Manager</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui.cpp">
-      <Filter>04. Manager\10. Editor Manager\ImGui</Filter>
+      <Filter>Module\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui_draw.cpp">
-      <Filter>04. Manager\10. Editor Manager\ImGui</Filter>
+      <Filter>Module\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui_impl_dx11.cpp">
-      <Filter>04. Manager\10. Editor Manager\ImGui</Filter>
+      <Filter>Module\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui_impl_win32.cpp">
-      <Filter>04. Manager\10. Editor Manager\ImGui</Filter>
+      <Filter>Module\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui_tables.cpp">
-      <Filter>04. Manager\10. Editor Manager\ImGui</Filter>
+      <Filter>Module\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui_widgets.cpp">
-      <Filter>04. Manager\10. Editor Manager\ImGui</Filter>
+      <Filter>Module\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="CEditorMgr_UX.cpp">
       <Filter>04. Manager\10. Editor Manager</Filter>
@@ -742,9 +742,6 @@
     </ClCompile>
     <ClCompile Include="CGameObjectEx.cpp">
       <Filter>07. GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGui\imgui_demo.cpp">
-      <Filter>04. Manager\10. Editor Manager</Filter>
     </ClCompile>
     <ClCompile Include="CSetColorCS.cpp">
       <Filter>Shader Code\Compute</Filter>
@@ -843,25 +840,28 @@
       <Filter>09. Editor\Module</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\ImGuizmo\GraphEditor.cpp">
-      <Filter>04. Manager\10. Editor Manager\ImGui\ImGuizmo</Filter>
+      <Filter>Module\ImGui\ImGuizmo</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\ImGuizmo\ImCurveEdit.cpp">
-      <Filter>04. Manager\10. Editor Manager\ImGui\ImGuizmo</Filter>
+      <Filter>Module\ImGui\ImGuizmo</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\ImGuizmo\ImGradient.cpp">
-      <Filter>04. Manager\10. Editor Manager\ImGui\ImGuizmo</Filter>
+      <Filter>Module\ImGui\ImGuizmo</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\ImGuizmo\ImGuizmo.cpp">
-      <Filter>04. Manager\10. Editor Manager\ImGui\ImGuizmo</Filter>
+      <Filter>Module\ImGui\ImGuizmo</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\ImGuizmo\ImSequencer.cpp">
-      <Filter>04. Manager\10. Editor Manager\ImGui\ImGuizmo</Filter>
+      <Filter>Module\ImGui\ImGuizmo</Filter>
     </ClCompile>
     <ClCompile Include="CMRT.cpp">
       <Filter>Module</Filter>
     </ClCompile>
     <ClCompile Include="CRenderMgr_Init.cpp">
       <Filter>04. Manager\06. Render Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_demo.cpp">
+      <Filter>Module\ImGui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
