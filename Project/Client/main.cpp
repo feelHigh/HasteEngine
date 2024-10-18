@@ -35,7 +35,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MyRegisterClass(hInstance);
 
-    HWND hWnd = CreateWindowW(L"MyWindowClass", L"MyGame", WS_OVERLAPPEDWINDOW,
+    HWND hWnd = CreateWindowW(L"HasteEngine", L"Haste Engine", WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
     if (!hWnd)
@@ -108,7 +108,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
     wcex.lpszMenuName = nullptr;//MAKEINTRESOURCEW(IDC_CLIENT);
-    wcex.lpszClassName = L"MyWindowClass";
+    wcex.lpszClassName = L"HasteEngine";
     wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
     return RegisterClassExW(&wcex);
