@@ -734,12 +734,6 @@
     <ClCompile Include="ImGui\imgui_widgets.cpp">
       <Filter>Module\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="CEditorMgr_UX.cpp">
-      <Filter>04. Manager\10. Editor Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="CEditorMgr_ObjectEx.cpp">
-      <Filter>04. Manager\10. Editor Manager</Filter>
-    </ClCompile>
     <ClCompile Include="CGameObjectEx.cpp">
       <Filter>07. GameObject</Filter>
     </ClCompile>
@@ -862,6 +856,12 @@
     </ClCompile>
     <ClCompile Include="ImGui\ImGuizmo\ImSequencer.cpp">
       <Filter>Module\ImGui\ImGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="CEditorMgr_ObjectEx.cpp">
+      <Filter>04. Manager\10. Editor Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CEditorMgr_UX.cpp">
+      <Filter>04. Manager\10. Editor Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

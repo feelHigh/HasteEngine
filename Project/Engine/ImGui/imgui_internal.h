@@ -41,7 +41,8 @@ Index of this file:
 
 */
 
-#pragma once
+#ifndef CINTERNAL_H
+#define CINTERNAL_H
 #ifndef IMGUI_DISABLE
 
 //-----------------------------------------------------------------------------
@@ -3851,3 +3852,5 @@ extern const char*  ImGuiTestEngine_FindItemDebugLabel(ImGuiContext* ctx, ImGuiI
 #endif
 
 #endif // #ifndef IMGUI_DISABLE
+
+#endif // #ifndef CINTENRAL_H

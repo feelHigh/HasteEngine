@@ -25,7 +25,7 @@ void CTextureUI::Update()
 
 	ImVec4 tint_col = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
 	ImVec4 border_col = ImVec4(0.7f, 0.7f, 0.7f, 1.0f);
-	ImGui::Image(pTexture->GetSRV().Get(), ImVec2(150, 150), uv_min, uv_max, tint_col, border_col);
+	ImGui::Image((ImTextureID)(pTexture->GetSRV().Get()), ImVec2(150, 150), uv_min, uv_max, tint_col, border_col);
 
 	// 텍스쳐 이름
 	OutputAssetName();

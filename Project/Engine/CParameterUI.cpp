@@ -154,9 +154,9 @@ bool CParameterUI::InputTexture(Ptr<CTexture>& _CurTex, const string& _Desc
 	ImVec2 uv_min = ImVec2(0.0f, 0.0f);
 	ImVec2 uv_max = ImVec2(1.0f, 1.0f);
 
-	ImTextureID TexID = nullptr;
+	ImTextureID TexID = (ImTextureID)nullptr;
 	if (nullptr != CurTex)
-		TexID = CurTex->GetSRV().Get();
+		TexID = (ImTextureID)CurTex->GetSRV().Get();
 
 	ImVec4 tint_col = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
 	ImVec4 border_col = ImVec4(0.7f, 0.7f, 0.7f, 1.0f);

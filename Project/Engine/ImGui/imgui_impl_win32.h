@@ -17,7 +17,8 @@
 // - Documentation        https://dearimgui.com/docs (same as your local docs/ folder).
 // - Introduction, links and more at the top of imgui.cpp
 
-#pragma once
+#ifndef CIMGUI_IMPL_WIN32_H
+#define CIMGUI_IMPL_WIN32_H
 #include "imgui.h"      // IMGUI_IMPL_API
 #ifndef IMGUI_DISABLE
 
@@ -52,3 +53,5 @@ IMGUI_IMPL_API float    ImGui_ImplWin32_GetDpiScaleForMonitor(void* monitor); //
 IMGUI_IMPL_API void     ImGui_ImplWin32_EnableAlphaCompositing(void* hwnd);   // HWND hwnd
 
 #endif // #ifndef IMGUI_DISABLE
+
+#endif // #ifndef CIMGUI_IMPL_WIN32_H

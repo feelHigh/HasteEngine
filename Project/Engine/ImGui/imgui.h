@@ -55,8 +55,8 @@ Index of this file:
 // [SECTION] Obsolete functions and types
 
 */
-
-#pragma once
+#ifndef CIMGUI_H
+#define CIMGUI_H
 
 // Configuration file with compile-time options
 // (edit imconfig.h or '#define IMGUI_USER_CONFIG "myfilename.h" from your build system)
@@ -3986,3 +3986,5 @@ namespace ImGui
 #endif
 
 #endif // #ifndef IMGUI_DISABLE
+
+#endif // #ifndef CIMGUI_H

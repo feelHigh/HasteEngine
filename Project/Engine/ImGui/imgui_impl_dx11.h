@@ -15,7 +15,8 @@
 // - Documentation        https://dearimgui.com/docs (same as your local docs/ folder).
 // - Introduction, links and more at the top of imgui.cpp
 
-#pragma once
+#ifndef CIMGUI_IMPL_DX11_H
+#define CIMGUI_IMPL_DX11_H
 #include "imgui.h"      // IMGUI_IMPL_API
 #ifndef IMGUI_DISABLE
 
@@ -44,3 +45,5 @@ struct ImGui_ImplDX11_RenderState
 };
 
 #endif // #ifndef IMGUI_DISABLE
+
+#endif // #ifndef CIMGUI_IMPL_DX11_H
