@@ -857,12 +857,6 @@
     <ClCompile Include="ImGui\ImGuizmo\ImSequencer.cpp">
       <Filter>Module\ImGui\ImGuizmo</Filter>
     </ClCompile>
-    <ClCompile Include="CEditorMgr_ObjectEx.cpp">
-      <Filter>04. Manager\10. Editor Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="CEditorMgr_UX.cpp">
-      <Filter>04. Manager\10. Editor Manager</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="ParticleTick.fx">

@@ -11,21 +11,15 @@ class CEditorMgr :
 public:
     void Initialize();
     void Tick();
+    void Render();
 
 public:
     CEditor* FindEditor(const string& Name);
 
 private:
-    void ShortCut();
-
-    void CreateEditorObject();
-    void EditorObjectProgress();
-
-    void ImGui_Initialize();
     void ObserveContent();
     void ImGuiProgress();
     void ImGuiTick();
-    void CreateEditorUI();
 
 private:
     vector<CGameObject*>    m_vecEditorObject;

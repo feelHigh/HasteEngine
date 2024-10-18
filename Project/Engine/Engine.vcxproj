@@ -293,8 +293,6 @@ call EngineCopy.bat</Command>
     <ClCompile Include="CDevice.cpp" />
     <ClCompile Include="CEditor.cpp" />
     <ClCompile Include="CEditorMgr.cpp" />
-    <ClCompile Include="CEditorMgr_ObjectEx.cpp" />
-    <ClCompile Include="CEditorMgr_UX.cpp" />
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CEntity.cpp" />
     <ClCompile Include="CFlipbook.cpp" />
