@@ -1,6 +1,5 @@
-#include "../../pch.h"
 // https://github.com/CedricGuillemet/ImGuizmo
-// v 1.83
+// v1.91.3 WIP
 //
 // The MIT License(MIT)
 //
@@ -25,8 +24,8 @@
 // SOFTWARE.
 //
 #include "ImGradient.h"
-#include "../imgui.h"
-#include "../imgui_internal.h"
+#include "imgui.h"
+#include "imgui_internal.h"
 
 namespace ImGradient
 {
@@ -68,7 +67,7 @@ namespace ImGradient
       bool ret = false;
       ImGuiIO& io = ImGui::GetIO();
       ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(0, 0));
-      ImGui::BeginChildFrame(137, size);
+      ImGui::BeginChild(137, size, ImGuiChildFlags_FrameStyle);
 
       ImDrawList* draw_list = ImGui::GetWindowDrawList();
       const ImVec2 offset = ImGui::GetCursorScreenPos();
@@ -108,12 +107,10 @@ namespace ImGradient
          delegate.AddPoint(delegate.GetPoint(t));
          ret = true;
       }
-      ImGui::EndChildFrame();
+      ImGui::EndChild();
       ImGui::PopStyleVar();
 
       selection = currentSelection;
       return ret;
    }
 }
-
-#include "pch.h"

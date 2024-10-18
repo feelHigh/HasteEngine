@@ -1,6 +1,5 @@
-#include "../../pch.h"
 // https://github.com/CedricGuillemet/ImGuizmo
-// v 1.83
+// v1.91.3 WIP
 //
 // The MIT License(MIT)
 //
@@ -25,8 +24,8 @@
 // SOFTWARE.
 //
 #include "ImCurveEdit.h"
-#include "../imgui.h"
-#include "../imgui_internal.h"
+#include "imgui.h"
+#include "imgui_internal.h"
 #include <stdint.h>
 #include <set>
 #include <vector>
@@ -149,7 +148,7 @@ namespace ImCurveEdit
       ImGuiIO& io = ImGui::GetIO();
       ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(0, 0));
       ImGui::PushStyleColor(ImGuiCol_Border, 0);
-      ImGui::BeginChildFrame(id, size);
+      ImGui::BeginChild(id, size, ImGuiChildFlags_FrameStyle);
       delegate.focused = ImGui::IsWindowFocused();
       ImDrawList* draw_list = ImGui::GetWindowDrawList();
       if (clippingRect)
@@ -442,7 +441,7 @@ namespace ImCurveEdit
       if (clippingRect)
          draw_list->PopClipRect();
 
-      ImGui::EndChildFrame();
+      ImGui::EndChild();
       ImGui::PopStyleVar();
       ImGui::PopStyleColor(1);
 
@@ -456,5 +455,3 @@ namespace ImCurveEdit
       return ret;
    }
 }
-
-#include "pch.h"

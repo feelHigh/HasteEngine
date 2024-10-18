@@ -546,6 +546,9 @@
     <ClInclude Include="CListUI.h">
       <Filter>09. Editor\Module</Filter>
     </ClInclude>
+    <ClInclude Include="CMRT.h">
+      <Filter>Module</Filter>
+    </ClInclude>
     <ClInclude Include="ImGui\ImGuizmo\GraphEditor.h">
       <Filter>Module\ImGui\ImGuizmo</Filter>
     </ClInclude>
@@ -563,9 +566,6 @@
     </ClInclude>
     <ClInclude Include="ImGui\ImGuizmo\ImZoomSlider.h">
       <Filter>Module\ImGui\ImGuizmo</Filter>
-    </ClInclude>
-    <ClInclude Include="CMRT.h">
-      <Filter>Module</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -839,6 +839,15 @@
     <ClCompile Include="CTreeUI.cpp">
       <Filter>09. Editor\Module</Filter>
     </ClCompile>
+    <ClCompile Include="CMRT.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="CRenderMgr_Init.cpp">
+      <Filter>04. Manager\06. Render Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_demo.cpp">
+      <Filter>Module\ImGui</Filter>
+    </ClCompile>
     <ClCompile Include="ImGui\ImGuizmo\GraphEditor.cpp">
       <Filter>Module\ImGui\ImGuizmo</Filter>
     </ClCompile>
@@ -853,15 +862,6 @@
     </ClCompile>
     <ClCompile Include="ImGui\ImGuizmo\ImSequencer.cpp">
       <Filter>Module\ImGui\ImGuizmo</Filter>
-    </ClCompile>
-    <ClCompile Include="CMRT.cpp">
-      <Filter>Module</Filter>
-    </ClCompile>
-    <ClCompile Include="CRenderMgr_Init.cpp">
-      <Filter>04. Manager\06. Render Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGui\imgui_demo.cpp">
-      <Filter>Module\ImGui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
