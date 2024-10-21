@@ -28,6 +28,9 @@ void CRenderMgr::Initialize()
 
 	// MRT 积己
 	CreateMRT();
+
+	// RenderMgr 傈侩 犁龙 积己
+	CreateMaterial();
 }
 
 void CRenderMgr::CreateMRT()
@@ -137,4 +140,45 @@ void CRenderMgr::CreateMRT()
 		m_arrMRT[(UINT)MRT_TYPE::LIGHT]->Create(2, arrRT, pDSTex);
 		m_arrMRT[(UINT)MRT_TYPE::LIGHT]->SetClearColor(arrClearColor, false);
 	}
+}
+
+void CRenderMgr::CreateMaterial()
+{
+	// DirLightShader
+	Ptr<CGraphicShader> pShader = new CGraphicShader;
+	pShader->CreateVertexShader(L"Shader\\light.fx", "VS_DirLight");
+	pShader->CreatePixelShader(L"Shader\\light.fx", "PS_DirLight");
+	pShader->SetRasterizerStateType(RASTERIZER_STATE_TYPE::CULL_BACK);
+	pShader->SetDepthStencilStateType(DEPTH_STENCIL_STATE_TYPE::NO_TEST_NO_WRITE);
+	pShader->SetBlendStateType(BLEND_STATE_TYPE::ONE_ONE);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_LIGHT);
+
+	CAssetMgr::GetInstance()->AddAsset(L"DirLightShader", pShader);
+
+	// DirLightMtrl
+	Ptr<CMaterial> pMtrl = new CMaterial(true);
+	pMtrl->SetShader(pShader);
+	pMtrl->SetTextureParameter(TEX_0, CAssetMgr::GetInstance()->FindAsset<CTexture>(L"PositionTargetTex"));
+	pMtrl->SetTextureParameter(TEX_1, CAssetMgr::GetInstance()->FindAsset<CTexture>(L"NormalTargetTex"));
+	CAssetMgr::GetInstance()->AddAsset(L"DirLightMtrl", pMtrl);
+
+
+	// MergeShader
+	pShader = new CGraphicShader;
+	pShader->CreateVertexShader(L"Shader\\merge.fx", "VS_Merge");
+	pShader->CreatePixelShader(L"Shader\\merge.fx", "PS_Merge");
+	pShader->SetRasterizerStateType(RASTERIZER_STATE_TYPE::CULL_BACK);
+	pShader->SetDepthStencilStateType(DEPTH_STENCIL_STATE_TYPE::NO_TEST_NO_WRITE);
+	pShader->SetBlendStateType(BLEND_STATE_TYPE::DEFAULT);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_NONE);
+
+	// MergeMtrl
+	m_MergeMtrl = new CMaterial(true);
+	m_MergeMtrl->SetShader(pShader);
+	m_MergeMtrl->SetTextureParameter(TEX_0, CAssetMgr::GetInstance()->FindAsset<CTexture>(L"AlbedoTargetTex"));
+	m_MergeMtrl->SetTextureParameter(TEX_1, CAssetMgr::GetInstance()->FindAsset<CTexture>(L"DiffuseTargetTex"));
+	m_MergeMtrl->SetTextureParameter(TEX_2, CAssetMgr::GetInstance()->FindAsset<CTexture>(L"SpecularTargetTex"));
+
+	// RectMesh
+	m_RectMesh = CAssetMgr::GetInstance()->FindAsset<CMesh>(L"RectMesh");
 }

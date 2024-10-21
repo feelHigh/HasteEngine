@@ -2,6 +2,7 @@
 #include "CLight3D.h"
 
 // Manager Headers
+#include "CAssetMgr.h"
 #include "CRenderMgr.h"
 
 // Component Headers
@@ -9,7 +10,10 @@
 
 CLight3D::CLight3D()
 	: CComponent(COMPONENT_TYPE::LIGHT3D)
+	, m_Info{}
+	, m_LightIdx(-1)
 {
+	SetLightType(LIGHT_TYPE::DIRECTIONAL);
 }
 
 CLight3D::~CLight3D()
@@ -22,12 +26,38 @@ void CLight3D::FinalTick()
 	m_Info.WorldDir = Transform()->GetWorldDirection(DIRECTION_TYPE::FRONT);
 
 	// 자신을 RenderMgr 에 등록시킴
-	CRenderMgr::GetInstance()->RegisterLight3D(this);
+	m_LightIdx = CRenderMgr::GetInstance()->RegisterLight3D(this);
+}
+
+void CLight3D::Render()
+{
+	m_LightMtrl->SetScalarParameter(INT_0, m_LightIdx);
+	m_LightMtrl->Binding();
+	m_VolumeMesh->Render();
 }
 
 void CLight3D::SetLightType(LIGHT_TYPE _Type)
 {
 	m_Info.Type = _Type;
+
+	// Directional Light
+	if (m_Info.Type == LIGHT_TYPE::DIRECTIONAL)
+	{
+		m_VolumeMesh = CAssetMgr::GetInstance()->FindAsset<CMesh>(L"RectMesh");
+		m_LightMtrl = CAssetMgr::GetInstance()->FindAsset<CMaterial>(L"DirLightMtrl");
+	}
+	// Point Light
+	else if (m_Info.Type == LIGHT_TYPE::POINT)
+	{
+		m_VolumeMesh = CAssetMgr::GetInstance()->FindAsset<CMesh>(L"SphereMesh");
+		m_LightMtrl = CAssetMgr::GetInstance()->FindAsset<CMaterial>(L"PointLightMtrl");
+	}
+	// Spot Light
+	else if (m_Info.Type == LIGHT_TYPE::SPOT)
+	{
+		m_VolumeMesh = CAssetMgr::GetInstance()->FindAsset<CMesh>(L"ConeMesh");
+		m_LightMtrl = CAssetMgr::GetInstance()->FindAsset<CMaterial>(L"SpotLightMtrl");
+	}
 }
 
 void CLight3D::SaveToFile(FILE* _File)

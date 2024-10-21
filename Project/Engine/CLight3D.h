@@ -13,6 +13,7 @@ public:
 
 public:
     virtual void FinalTick() override;
+    void Render();
 
 public:
     void SetLightType(LIGHT_TYPE _Type);
@@ -36,6 +37,10 @@ public:
 
 private:
     tLightInfo      m_Info;
+    int             m_LightIdx;
+
+    Ptr<CMesh>      m_VolumeMesh;
+    Ptr<CMaterial>  m_LightMtrl;
 
 };
 

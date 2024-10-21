@@ -777,4 +777,5 @@ void CAssetMgr::CreateEngineMaterial()
 	pMtrl = new CMaterial(true);
 	pMtrl->SetShader(FindAsset<CGraphicShader>(L"SkyBoxShader"));
 	AddAsset(L"SkyBoxMtrl", pMtrl);
+
 }
