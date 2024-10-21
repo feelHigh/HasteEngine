@@ -91,7 +91,7 @@ void CTestLevel::CreateTestLevel()
 	//pSkyBox->SkyBox()->SetSkyBoxTexture(pSkyBoxTex);
 	//pSkyBox->SkyBox()->SetSkyBoxType(CUBE);		
 
-	Ptr<CTexture> pSkyBoxTex = CAssetMgr::GetInstance()->FindAsset<CTexture>(L"Texture\\Skybox\\SkyDawn.dds");
+	Ptr<CTexture> pSkyBoxTex = CAssetMgr::GetInstance()->Load<CTexture>(L"Texture\\Skybox\\SkyDawn.dds", L"Texture\\Skybox\\SkyDawn.dds");
 	pSkyBox->Skybox()->SetSkyboxTexture(pSkyBoxTex);
 	pSkyBox->Skybox()->SetSkyboxType(CUBE);
 
@@ -110,8 +110,8 @@ void CTestLevel::CreateTestLevel()
 	pPlayer->MeshRender()->SetMesh(CAssetMgr::GetInstance()->FindAsset<CMesh>(L"RectMesh"));
 	pPlayer->MeshRender()->SetMaterial(pStd3D_DeferredMtrl);
 
-	Ptr<CTexture> pTex = CAssetMgr::GetInstance()->FindAsset<CTexture>(L"Texture\\LandScapeTexture\\gl1_ground_II_albedo.TGA");
-	Ptr<CTexture> pNTex = CAssetMgr::GetInstance()->FindAsset<CTexture>(L"Texture\\LandScapeTexture\\gl1_ground_II_normal.TGA");
+	Ptr<CTexture> pTex = CAssetMgr::GetInstance()->Load<CTexture>(L"Texture\\LandScapeTexture\\gl1_ground_II_albedo.TGA", L"Texture\\LandScapeTexture\\gl1_ground_II_albedo.TGA");
+	Ptr<CTexture> pNTex = CAssetMgr::GetInstance()->Load<CTexture>(L"Texture\\LandScapeTexture\\gl1_ground_II_normal.TGA", L"Texture\\LandScapeTexture\\gl1_ground_II_normal.TGA");
 
 	pPlayer->MeshRender()->GetMaterial()->SetTextureParameter(TEX_0, pTex);		// Albedo Parameter
 	//pPlayer->MeshRender()->GetMaterial()->SetTextureParameter(TEX_1, pNTex);	// Normal Parameter

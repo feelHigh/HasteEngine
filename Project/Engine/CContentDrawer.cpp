@@ -10,7 +10,6 @@
 #include "CEditorMgr.h"
 
 // Editor Headers
-#include "CInspector.h"
 #include "CTreeUI.h"
 
 CContentDrawer::CContentDrawer()
@@ -23,7 +22,6 @@ CContentDrawer::CContentDrawer()
 	m_Tree->ShowRoot(false);	// 루트 보이지 않기
 	m_Tree->UseDrag(true);		// Tree Drag 기능 ON
 	m_Tree->ShowNameOnly(true); // 노드의 이름에서 경로 및 확장자는 제외하고 파일이름만 보이기
-	m_Tree->AddClickedDelegate(this, (DELEGATE_1)&CContentDrawer::AssetClicked);
 	m_Tree->AddPopupDelegate(this, (DELEGATE_1)&CContentDrawer::PopupMenu);
 	// Asset 상태를 CContentDrawer 의 TreeUI 에 반영
 	RenewContentDrawer();
@@ -68,20 +66,6 @@ void CContentDrawer::RenewContentDrawer()
 		}
 	}
 }
-
-void CContentDrawer::AssetClicked(DWORD_PTR _Param)
-{
-	TreeNode* pNode = (TreeNode*)_Param;
-	if (pNode->IsFrame())
-		return;
-
-	Ptr<CAsset> pAsset = (CAsset*)pNode->GetData();
-
-	CInspector* pInspector = (CInspector*)CEditorMgr::GetInstance()->FindEditor("Inspector");
-	pInspector->SetTargetAsset(pAsset);
-	//ImGui::SetWindowFocus(nullptr);
-}
-
 
 void CContentDrawer::Reload()
 {

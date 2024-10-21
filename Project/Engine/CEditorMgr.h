@@ -14,7 +14,7 @@ public:
     void Render();
 
 public:
-    CEditor* FindEditor(const string& Name);
+    //CEditor* FindEditor(const string& Name);
 
 private:
     void ObserveContent();

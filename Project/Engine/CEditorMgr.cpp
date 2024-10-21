@@ -20,11 +20,8 @@
 
 // Editor Headers
 #include "CEditor.h"
-#include "CParameterUI.h"
-#include "CInspector.h"
 #include "CContentDrawer.h"
 #include "COutliner.h"
-#include "CListUI.h"
 #include "CMenuUI.h"
 
 // ImGui Headers
@@ -166,27 +163,14 @@ void CEditorMgr::Initialize()
     CEditor* pUI = nullptr;
 
     // Content
-    pUI = new CContentDrawer;
+    /*pUI = new CContentDrawer;
     pUI->Initialize();
     pUI->SetName("Content Drawer");
-    m_mapUI.insert(make_pair(pUI->GetName(), pUI));
+    m_mapUI.insert(make_pair(pUI->GetName(), pUI));*/
 
     // Outliner
     pUI = new COutliner;
     pUI->SetName("Outliner");
-    m_mapUI.insert(make_pair(pUI->GetName(), pUI));
-
-    // ListUI
-    pUI = new CListUI;
-    pUI->SetName("List");
-    pUI->SetActive(false);
-    pUI->SetModal(true);
-    m_mapUI.insert(make_pair(pUI->GetName(), pUI));
-
-    // Inspector
-    pUI = new CInspector;
-    pUI->Initialize();
-    pUI->SetName("Inspector");
     m_mapUI.insert(make_pair(pUI->GetName(), pUI));
 
     // Menu
@@ -216,15 +200,30 @@ void CEditorMgr::Initialize()
     CRenderMgr::GetInstance()->RegisterEditorCamera(pEditorCamera->Camera());
 
     // Content 폴더를 감시하는 커널 오브젝트 생성
-    wstring ContentPath = CPathMgr::GetInstance()->GetContentPath();
+    /*wstring ContentPath = CPathMgr::GetInstance()->GetContentPath();
     m_hNotifyHandle = FindFirstChangeNotification(ContentPath.c_str(), true
                                                 , FILE_NOTIFY_CHANGE_FILE_NAME | FILE_NOTIFY_CHANGE_DIR_NAME
-                                                | FILE_ACTION_ADDED | FILE_ACTION_REMOVED);
+                                                | FILE_ACTION_ADDED | FILE_ACTION_REMOVED);*/
 }
 
 void CEditorMgr::Tick()
 {
-    ImGuiProgress();
+    //======================
+    // Startup ImGui
+    //======================
+    ImGui_ImplDX11_NewFrame();
+    ImGui_ImplWin32_NewFrame();
+    ImGui::NewFrame();
+
+    //======================
+    // ImGui Tick
+    //======================
+    ImGui::ShowDemoWindow();
+
+    for (const auto& pair : m_mapUI)
+    {
+        pair.second->Tick();
+    }
 
     //======================
     // Editor Object Tick
@@ -239,27 +238,9 @@ void CEditorMgr::Tick()
         m_vecEditorObject[i]->FinalTick();
     }
 
-    ObserveContent();
-}
-
-void CEditorMgr::Render()
-{
-}
-
-void CEditorMgr::ImGuiProgress()
-{
-    // Start ImGui
-    ImGui_ImplDX11_NewFrame();
-    ImGui_ImplWin32_NewFrame();
-    ImGui::NewFrame();
-
-    // ParamUI ID Reset
-    CParameterUI::ResetID();
-
-    // ImGui Tick
-    ImGuiTick();
-
-    // ImGui Render    
+    //======================
+    // ImGui Render
+    //======================
     ImGui::Render();
     ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
@@ -269,43 +250,35 @@ void CEditorMgr::ImGuiProgress()
         ImGui::UpdatePlatformWindows();
         ImGui::RenderPlatformWindowsDefault();
     }
+
+    ObserveContent();
+}
+
+void CEditorMgr::Render()
+{
+}
+
+void CEditorMgr::ImGuiProgress()
+{
 }
 
 void CEditorMgr::ImGuiTick()
 {
-    ImGui::ShowDemoWindow();
-
-    for (const auto& pair : m_mapUI)
-    {
-        pair.second->Tick();
-    }
 }
 
 void CEditorMgr::ObserveContent()
 {
     // 지정된 상황이 발생했는지 확인
-    DWORD dwStatus = WaitForSingleObject(m_hNotifyHandle, 0);
+    //DWORD dwStatus = WaitForSingleObject(m_hNotifyHandle, 0);
 
     // 컨텐츠 폴더에 변경점이 발생했다면,
-    if (dwStatus == WAIT_OBJECT_0)
-    {
-        // Content 폴더에 있는 모든 에셋과 메모리에 로딩되어있는 에셋을 동기화
-        CContentDrawer* pContent = (CContentDrawer*)FindEditor("Content Drawer");
-        pContent->Reload();
+    //if (dwStatus == WAIT_OBJECT_0)
+    //{
+    //    // Content 폴더에 있는 모든 에셋과 메모리에 로딩되어있는 에셋을 동기화
+    //    CContentDrawer* pContent = (CContentDrawer*)FindEditor("Content Drawer");
+    //    pContent->Reload();
 
-        // 다시 Content 폴더에 변경점이 발생하는지 확인하도록 함
-        FindNextChangeNotification(m_hNotifyHandle);
-    }
-}
-
-CEditor* CEditorMgr::FindEditor(const string& _Name)
-{
-    map<string, CEditor*>::iterator iter = m_mapUI.find(_Name);
-
-    if (iter == m_mapUI.end())
-    {
-        return nullptr;
-    }
-
-    return iter->second;
+    //    // 다시 Content 폴더에 변경점이 발생하는지 확인하도록 함
+    //    FindNextChangeNotification(m_hNotifyHandle);
+    //}
 }

@@ -19,7 +19,6 @@
 #include "CScript.h"
 
 // Editor Headers
-#include "CInspector.h"
 
 // Module Headers
 #include "CLevelSaveLoad.h"
@@ -120,9 +119,9 @@ void CMenuUI::Level()
 			ChangeLevel(pLoadedLevel, LEVEL_STATE::STOP);
 
 			// Inspector Clear 하기 (이전 오브젝트 정보를 보여주고 있을 수가 있기 때문에)				
-			CInspector* pInspector = (CInspector*)CEditorMgr::GetInstance()->FindEditor("Inspector");
+			/*CInspector* pInspector = (CInspector*)CEditorMgr::GetInstance()->FindEditor("Inspector");
 			pInspector->SetTargetObject(nullptr);
-			pInspector->SetTargetAsset(nullptr);
+			pInspector->SetTargetAsset(nullptr);*/
 		}
 		ImGui::EndDisabled();
 
@@ -171,16 +170,16 @@ void CMenuUI::AddScript()
 				//CScript* pScript = CScriptMgr::GetScript(vecScriptsName[i]);
 
 				// 인스펙터
-				CInspector* pInspector = (CInspector*)CEditorMgr::GetInstance()->FindEditor("Inspector");
+				//CInspector* pInspector = (CInspector*)CEditorMgr::GetInstance()->FindEditor("Inspector");
 
-				// 타겟 오브젝트 알아냄
-				CGameObject* pObject = pInspector->GetTargetObject();
-				if (nullptr != pObject)
-				{
-					// 오브젝트에, 선택한 스크립트를 추가해줌
-					CScript* pScript = CScriptMgr::GetScript(vecScriptsName[i]);
-					pObject->AddComponent(pScript);
-				}
+				//// 타겟 오브젝트 알아냄
+				//CGameObject* pObject = pInspector->GetTargetObject();
+				//if (nullptr != pObject)
+				//{
+				//	// 오브젝트에, 선택한 스크립트를 추가해줌
+				//	CScript* pScript = CScriptMgr::GetScript(vecScriptsName[i]);
+				//	pObject->AddComponent(pScript);
+				//}
 			}
 		}
 
@@ -202,13 +201,13 @@ void CMenuUI::Assets()
 
 
 
-		CEditor* pSpriteEditor = CEditorMgr::GetInstance()->FindEditor("SpriteEditor");
+		/*CEditor* pSpriteEditor = CEditorMgr::GetInstance()->FindEditor("SpriteEditor");
 		bool IsActive = pSpriteEditor->IsActive();
 
 		if (ImGui::MenuItem("Sprite Editor", nullptr, &IsActive))
 		{
 			CEditorMgr::GetInstance()->FindEditor("SpriteEditor")->SetActive(IsActive);
-		}
+		}*/
 
 		ImGui::EndMenu();
 	}

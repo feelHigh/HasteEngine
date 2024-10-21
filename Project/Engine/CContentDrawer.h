@@ -18,7 +18,6 @@ public:
 
 private:
     void RenewContentDrawer();
-    void AssetClicked(DWORD_PTR _Param);
     void PopupMenu(DWORD_PTR _Parma);
 
     void FindAssetName(const wstring& _FolderPath, const wstring& _Filter);

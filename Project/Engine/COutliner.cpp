@@ -14,7 +14,6 @@
 
 // Editor Headers
 #include "CTreeUI.h"
-#include "CInspector.h"
 
 COutliner::COutliner()
 {
@@ -141,7 +140,7 @@ void COutliner::GameObjectClicked(DWORD_PTR _Param)
 
 	CGameObject* pObject = (CGameObject*)pNode->GetData();
 
-	CInspector* pInspector = (CInspector*)CEditorMgr::GetInstance()->FindEditor("Inspector");
-	pInspector->SetTargetObject(pObject);
+	/*CInspector* pInspector = (CInspector*)CEditorMgr::GetInstance()->FindEditor("Inspector");
+	pInspector->SetTargetObject(pObject);*/
 	//ImGui::SetWindowFocus(nullptr);
 }

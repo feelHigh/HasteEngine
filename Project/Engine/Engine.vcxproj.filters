@@ -169,9 +169,6 @@
     <Filter Include="04. Manager\10. Editor Manager">
       <UniqueIdentifier>{0922e7a9-600d-4733-a4fa-ad3a48c61a15}</UniqueIdentifier>
     </Filter>
-    <Filter Include="09. Editor\Inspector">
-      <UniqueIdentifier>{e0076684-15eb-45f6-ac7c-849c1c48f761}</UniqueIdentifier>
-    </Filter>
     <Filter Include="09. Editor\Outliner">
       <UniqueIdentifier>{b8cdbd18-c79c-4834-b9f0-ae7134756ebb}</UniqueIdentifier>
     </Filter>
@@ -180,72 +177,6 @@
     </Filter>
     <Filter Include="09. Editor\Content Drawer">
       <UniqueIdentifier>{2bb61018-202c-4cd3-9526-33f29d2884c3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Inspector\Asset">
-      <UniqueIdentifier>{44211c7f-dfec-471b-a8d9-8028c7c2a6b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Inspector\Component">
-      <UniqueIdentifier>{07096ae5-9cf6-4abb-8936-e5fd634709b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Inspector\Asset\01. Mesh">
-      <UniqueIdentifier>{c4594b48-e2e1-4de1-81b1-57d59b0ea084}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Inspector\Asset\02. Mesh Data">
-      <UniqueIdentifier>{c33f1606-5703-4dcc-ae6d-16baca389f9f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Inspector\Asset\03. Material">
-      <UniqueIdentifier>{30974f51-9b3e-4d46-bf6f-34c1ff8ffedf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Inspector\Asset\04. Prefab">
-      <UniqueIdentifier>{90c6815b-1ec7-43c1-b040-53fc3e2a1875}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Inspector\Asset\05. Texture">
-      <UniqueIdentifier>{7ef03611-d264-4c61-a26a-2a4312d65f49}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Inspector\Asset\06. Sprite">
-      <UniqueIdentifier>{1671056b-3176-4d8b-9d24-6ea7bcee270d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Inspector\Asset\07. Flipbook">
-      <UniqueIdentifier>{e4b209fb-ca12-4005-b427-146f18fc8319}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Inspector\Asset\08. Sound">
-      <UniqueIdentifier>{c931a0d4-5b43-41cb-84c0-674471258c26}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Inspector\Component\01. Transform">
-      <UniqueIdentifier>{88935043-0f45-44a1-b2a5-566ab8f0ad3e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Inspector\Component\02. Collider2D">
-      <UniqueIdentifier>{34ff5a48-53ac-4e58-895d-ac3fb72e7d1c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Inspector\Component\03. Collider3D">
-      <UniqueIdentifier>{06cf576d-82c9-4f59-835a-f445cd01c336}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Inspector\Component\04. Flipbook %28Component%29">
-      <UniqueIdentifier>{8069029d-7238-45b4-a3af-b44078f0ae24}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Inspector\Component\05. Animation">
-      <UniqueIdentifier>{b98c83b2-67ec-4e8c-8fa3-3289158bb0b0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Inspector\Component\06. Rigidbody">
-      <UniqueIdentifier>{af45c664-7c24-4b24-a015-8504a2623912}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Inspector\Component\07. Camera">
-      <UniqueIdentifier>{5371aee5-a34a-45eb-93d2-32ee148cd1fb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Inspector\Component\08. Light2D">
-      <UniqueIdentifier>{8a596a45-2db9-45de-965d-6efee65b1a2a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Inspector\Component\09. Light3D">
-      <UniqueIdentifier>{b77caf61-d420-4cb5-aaff-bea1b4186c1a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Inspector\Component\Render Component">
-      <UniqueIdentifier>{b1ab6bc5-4d5b-416f-8d17-e343e329c8e2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Inspector\Component\Script">
-      <UniqueIdentifier>{5488750d-6ae5-4fa5-b705-3e67f4c29cff}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Inspector\Asset\Shader">
-      <UniqueIdentifier>{65a554b6-775e-459d-ae30-263cff3a89ba}</UniqueIdentifier>
     </Filter>
     <Filter Include="09. Editor\Menu">
       <UniqueIdentifier>{7e95959f-f33f-41f1-a0ce-bc086a938482}</UniqueIdentifier>
@@ -459,75 +390,6 @@
     <ClInclude Include="CLevelSaveLoad.h">
       <Filter>Module</Filter>
     </ClInclude>
-    <ClInclude Include="CInspector.h">
-      <Filter>09. Editor\Inspector</Filter>
-    </ClInclude>
-    <ClInclude Include="CAssetUI.h">
-      <Filter>09. Editor\Inspector\Asset</Filter>
-    </ClInclude>
-    <ClInclude Include="CComponentUI.h">
-      <Filter>09. Editor\Inspector\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="CMeshUI.h">
-      <Filter>09. Editor\Inspector\Asset\01. Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="CMeshDataUI.h">
-      <Filter>09. Editor\Inspector\Asset\02. Mesh Data</Filter>
-    </ClInclude>
-    <ClInclude Include="CMaterialUI.h">
-      <Filter>09. Editor\Inspector\Asset\03. Material</Filter>
-    </ClInclude>
-    <ClInclude Include="CPrefabUI.h">
-      <Filter>09. Editor\Inspector\Asset\04. Prefab</Filter>
-    </ClInclude>
-    <ClInclude Include="CTextureUI.h">
-      <Filter>09. Editor\Inspector\Asset\05. Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="CSpriteUI.h">
-      <Filter>09. Editor\Inspector\Asset\06. Sprite</Filter>
-    </ClInclude>
-    <ClInclude Include="CFlipbookUI.h">
-      <Filter>09. Editor\Inspector\Asset\07. Flipbook</Filter>
-    </ClInclude>
-    <ClInclude Include="CSoundUI.h">
-      <Filter>09. Editor\Inspector\Asset\08. Sound</Filter>
-    </ClInclude>
-    <ClInclude Include="CGraphicShaderUI.h">
-      <Filter>09. Editor\Inspector\Asset\Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="CTransformUI.h">
-      <Filter>09. Editor\Inspector\Component\01. Transform</Filter>
-    </ClInclude>
-    <ClInclude Include="CCollider2DUI.h">
-      <Filter>09. Editor\Inspector\Component\02. Collider2D</Filter>
-    </ClInclude>
-    <ClInclude Include="CFlipbookComponentUI.h">
-      <Filter>09. Editor\Inspector\Component\04. Flipbook %28Component%29</Filter>
-    </ClInclude>
-    <ClInclude Include="CCameraUI.h">
-      <Filter>09. Editor\Inspector\Component\07. Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="CLight2DUI.h">
-      <Filter>09. Editor\Inspector\Component\08. Light2D</Filter>
-    </ClInclude>
-    <ClInclude Include="CLight3DUI.h">
-      <Filter>09. Editor\Inspector\Component\09. Light3D</Filter>
-    </ClInclude>
-    <ClInclude Include="CMeshRenderUI.h">
-      <Filter>09. Editor\Inspector\Component\Render Component</Filter>
-    </ClInclude>
-    <ClInclude Include="CTileMapUI.h">
-      <Filter>09. Editor\Inspector\Component\Render Component</Filter>
-    </ClInclude>
-    <ClInclude Include="CParticleSystemUI.h">
-      <Filter>09. Editor\Inspector\Component\Render Component</Filter>
-    </ClInclude>
-    <ClInclude Include="CComputeShaderUI.h">
-      <Filter>09. Editor\Inspector\Asset\Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="CScriptUI.h">
-      <Filter>09. Editor\Inspector\Component\Script</Filter>
-    </ClInclude>
     <ClInclude Include="CContentDrawer.h">
       <Filter>09. Editor\Content Drawer</Filter>
     </ClInclude>
@@ -537,13 +399,7 @@
     <ClInclude Include="COutliner.h">
       <Filter>09. Editor\Outliner</Filter>
     </ClInclude>
-    <ClInclude Include="CParameterUI.h">
-      <Filter>09. Editor\Module</Filter>
-    </ClInclude>
     <ClInclude Include="CTreeUI.h">
-      <Filter>09. Editor\Module</Filter>
-    </ClInclude>
-    <ClInclude Include="CListUI.h">
       <Filter>09. Editor\Module</Filter>
     </ClInclude>
     <ClInclude Include="CMRT.h">
@@ -743,78 +599,6 @@
     <ClCompile Include="CLevelSaveLoad.cpp">
       <Filter>Module</Filter>
     </ClCompile>
-    <ClCompile Include="CInspector.cpp">
-      <Filter>09. Editor\Inspector</Filter>
-    </ClCompile>
-    <ClCompile Include="CAssetUI.cpp">
-      <Filter>09. Editor\Inspector\Asset</Filter>
-    </ClCompile>
-    <ClCompile Include="CComponentUI.cpp">
-      <Filter>09. Editor\Inspector\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="CMeshUI.cpp">
-      <Filter>09. Editor\Inspector\Asset\01. Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="CMeshDataUI.cpp">
-      <Filter>09. Editor\Inspector\Asset\02. Mesh Data</Filter>
-    </ClCompile>
-    <ClCompile Include="CMaterialUI.cpp">
-      <Filter>09. Editor\Inspector\Asset\03. Material</Filter>
-    </ClCompile>
-    <ClCompile Include="CPrefabUI.cpp">
-      <Filter>09. Editor\Inspector\Asset\04. Prefab</Filter>
-    </ClCompile>
-    <ClCompile Include="CTextureUI.cpp">
-      <Filter>09. Editor\Inspector\Asset\05. Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="CSpriteUI.cpp">
-      <Filter>09. Editor\Inspector\Asset\06. Sprite</Filter>
-    </ClCompile>
-    <ClCompile Include="CFlipbookUI.cpp">
-      <Filter>09. Editor\Inspector\Asset\07. Flipbook</Filter>
-    </ClCompile>
-    <ClCompile Include="CSoundUI.cpp">
-      <Filter>09. Editor\Inspector\Asset\08. Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="CGraphicShaderUI.cpp">
-      <Filter>09. Editor\Inspector\Asset\Shader</Filter>
-    </ClCompile>
-    <ClCompile Include="CTransformUI.cpp">
-      <Filter>09. Editor\Inspector\Component\01. Transform</Filter>
-    </ClCompile>
-    <ClCompile Include="CCollider2DUI.cpp">
-      <Filter>09. Editor\Inspector\Component\02. Collider2D</Filter>
-    </ClCompile>
-    <ClCompile Include="CFlipbookComponentUI.cpp">
-      <Filter>09. Editor\Inspector\Component\04. Flipbook %28Component%29</Filter>
-    </ClCompile>
-    <ClCompile Include="CCameraUI.cpp">
-      <Filter>09. Editor\Inspector\Component\07. Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="CLight2DUI.cpp">
-      <Filter>09. Editor\Inspector\Component\08. Light2D</Filter>
-    </ClCompile>
-    <ClCompile Include="CLight3DUI.cpp">
-      <Filter>09. Editor\Inspector\Component\09. Light3D</Filter>
-    </ClCompile>
-    <ClCompile Include="CMeshRenderUI.cpp">
-      <Filter>09. Editor\Inspector\Component\Render Component</Filter>
-    </ClCompile>
-    <ClCompile Include="CTileMapUI.cpp">
-      <Filter>09. Editor\Inspector\Component\Render Component</Filter>
-    </ClCompile>
-    <ClCompile Include="CParticleSystemUI.cpp">
-      <Filter>09. Editor\Inspector\Component\Render Component</Filter>
-    </ClCompile>
-    <ClCompile Include="CScriptUI.cpp">
-      <Filter>09. Editor\Inspector\Component\Script</Filter>
-    </ClCompile>
-    <ClCompile Include="CComputeShaderUI.cpp">
-      <Filter>09. Editor\Inspector\Asset\Shader</Filter>
-    </ClCompile>
-    <ClCompile Include="CInspector_Init.cpp">
-      <Filter>09. Editor\Inspector</Filter>
-    </ClCompile>
     <ClCompile Include="CContentDrawer.cpp">
       <Filter>09. Editor\Content Drawer</Filter>
     </ClCompile>
@@ -823,12 +607,6 @@
     </ClCompile>
     <ClCompile Include="COutliner.cpp">
       <Filter>09. Editor\Outliner</Filter>
-    </ClCompile>
-    <ClCompile Include="CParameterUI.cpp">
-      <Filter>09. Editor\Module</Filter>
-    </ClCompile>
-    <ClCompile Include="CListUI.cpp">
-      <Filter>09. Editor\Module</Filter>
     </ClCompile>
     <ClCompile Include="CTreeUI.cpp">
       <Filter>09. Editor\Module</Filter>
