@@ -59,51 +59,66 @@ int CDevice::Initialize(HWND _hWnd, UINT _Width, UINT _Height)
         return E_FAIL;
     }
 
-    // ViewPort 설정
-    // 출력시킬 화면 윈도우 영역을 설정
-    D3D11_VIEWPORT viewport = {};
-
-    viewport.TopLeftX = 0;
-    viewport.TopLeftY = 0;
-    viewport.Width = m_vResolution.x;
-    viewport.Height = m_vResolution.y;
-
-    viewport.MinDepth = 0;
-    viewport.MaxDepth = 1.f;
-
-    CONTEXT->RSSetViewports(1, &viewport);
-
-    if (FAILED(CreateConstantBuffer()))
-    {
-        MessageBox(nullptr, L"Constant Buffer creation failed.", L"장치 초기화 실패", MB_OK);
-        return E_FAIL;
-    }
-
+    // Rasterizer State
     if (FAILED(CreateRasterizerState()))
     {
         MessageBox(nullptr, L"Rasterizer State creation failed.", L"장치 초기화 실패", MB_OK);
         return E_FAIL;
     }
 
+    // Depth Stencil State
     if (FAILED(CreateDepthStencilState()))
     {
         MessageBox(nullptr, L"Depth Stencil State creation failed.", L"장치 초기화 실패", MB_OK);
         return E_FAIL;
     }
 
+    // Blend State
     if (FAILED(CreateBlendState()))
     {
         MessageBox(nullptr, L"Blend State creation failed.", L"장치 초기화 실패", MB_OK);
         return E_FAIL;
     }
 
+    // Sampler State
     if (FAILED(CreateSamplerState()))
     {
         MessageBox(nullptr, L"Sampler State creation failed.", L"장치 초기화 실패", MB_OK);
         return E_FAIL;
     }
 
+    // Constant Buffer
+    if (FAILED(CreateConstantBuffer()))
+    {
+        MessageBox(nullptr, L"Constant Buffer creation failed.", L"장치 초기화 실패", MB_OK);
+        return E_FAIL;
+    }
+
+    SetViewport(m_vResolution.x, m_vResolution.y);
+
     return S_OK;
+}
+
+void CDevice::Present()
+{
+    m_SwapChain->Present(0, 0);
+}
+
+void CDevice::SetViewport(float _Width, float _Height)
+{
+    // ViewPort 설정
+    // 출력시킬 화면 윈도우 영역을 설정
+    D3D11_VIEWPORT viewport = {};
+
+    viewport.TopLeftX = 0;
+    viewport.TopLeftY = 0;
+    viewport.Width = _Width;
+    viewport.Height = _Height;
+
+    viewport.MinDepth = 0;
+    viewport.MaxDepth = 1.f;
+
+    CONTEXT->RSSetViewports(1, &viewport);
 }
 
 int CDevice::CreateSwapChain()
@@ -113,14 +128,14 @@ int CDevice::CreateSwapChain()
     DXGI_SWAP_CHAIN_DESC Desc = {};
 
     Desc.BufferCount = 1; // 백버퍼 개수
+    Desc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
     Desc.BufferDesc.Width = (UINT)m_vResolution.x;          // 백버퍼 해상도 
     Desc.BufferDesc.Height = (UINT)m_vResolution.y;         // 백버퍼 해상도
     Desc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;    // 픽셀 포맷
-    Desc.BufferDesc.RefreshRate.Denominator = 60;
-    Desc.BufferDesc.RefreshRate.Numerator = 1;
+    Desc.BufferDesc.RefreshRate.Denominator = 1;
+    Desc.BufferDesc.RefreshRate.Numerator = 120;
     Desc.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
     Desc.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
-    Desc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
     Desc.Windowed = true;   // 창모드 설정
     Desc.OutputWindow = m_hWnd; // SwapChain 버퍼의 이미지를 출력시킬 윈도우 핸들
     Desc.Flags = 0;
@@ -166,46 +181,6 @@ int CDevice::CreateView()
 
     // Render Target 및 DepthStencilTexture Target 지정
     CONTEXT->OMSetRenderTargets(1, m_RTTex->GetRTV().GetAddressOf(), m_DSTex->GetDSV().Get());
-
-    return S_OK;
-}
-
-int CDevice::CreateConstantBuffer()
-{
-    CConstantBuffer* pCB = nullptr;
-
-    // 월드, 뷰, 투영 행렬 전달
-    pCB = new CConstantBuffer;
-    if (FAILED(pCB->Create(CONSTANT_BUFFER_TYPE::TRANSFORM, sizeof(tTransform))))
-    {
-        MessageBox(nullptr, L"Transform constant buffer creation failed.", L"초기화 실패", MB_OK);
-        return E_FAIL;
-    }
-    m_arrCB[(UINT)CONSTANT_BUFFER_TYPE::TRANSFORM] = pCB;
-
-    pCB = new CConstantBuffer;
-    if (FAILED(pCB->Create(CONSTANT_BUFFER_TYPE::MATERIAL, sizeof(tMtrlConst))))
-    {
-        MessageBox(nullptr, L"Material constant buffer creation failed.", L"초기화 실패", MB_OK);
-        return E_FAIL;
-    }
-    m_arrCB[(UINT)CONSTANT_BUFFER_TYPE::MATERIAL] = pCB;
-
-    pCB = new CConstantBuffer;
-    if (FAILED(pCB->Create(CONSTANT_BUFFER_TYPE::SPRITE, sizeof(tSpriteInfo))))
-    {
-        MessageBox(nullptr, L"Sprite constant buffer creation failed.", L"초기화 실패", MB_OK);
-        return E_FAIL;
-    }
-    m_arrCB[(UINT)CONSTANT_BUFFER_TYPE::SPRITE] = pCB;
-
-    pCB = new CConstantBuffer;
-    if (FAILED(pCB->Create(CONSTANT_BUFFER_TYPE::GLOBAL, sizeof(tGlobalData))))
-    {
-        MessageBox(nullptr, L"Global Data constant buffer creation failed.", L"초기화 실패", MB_OK);
-        return E_FAIL;
-    }
-    m_arrCB[(UINT)CONSTANT_BUFFER_TYPE::GLOBAL] = pCB;
 
     return S_OK;
 }
@@ -307,7 +282,7 @@ int CDevice::CreateBlendState()
     // Default
     m_BSState[(UINT)BLEND_STATE_TYPE::DEFAULT] = nullptr;
 
-    // AlphaBlend - Coverage
+    // Alpha Blend - Coverage
     Desc.AlphaToCoverageEnable = true;
     Desc.IndependentBlendEnable = false;
 
@@ -328,7 +303,7 @@ int CDevice::CreateBlendState()
         return E_FAIL;
     }
 
-    // AlphaBlend
+    // Alpha Blend
     Desc.AlphaToCoverageEnable = false;
     Desc.IndependentBlendEnable = false;
 
@@ -377,30 +352,33 @@ int CDevice::CreateSamplerState()
 {
     D3D11_SAMPLER_DESC Desc = {};
 
+    //Anisotropic Filter
     Desc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
     Desc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
     Desc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
-    Desc.Filter = D3D11_FILTER_ANISOTROPIC; // 이방성 필터링
+    Desc.Filter = D3D11_FILTER_ANISOTROPIC;
 
     if (FAILED(DEVICE->CreateSamplerState(&Desc, m_Sampler[0].GetAddressOf())))
     {
         return E_FAIL;
     }
 
+    // Point Filter
     Desc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
     Desc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
     Desc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
-    Desc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT; // 포인트 필터링
+    Desc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
 
     if (FAILED(DEVICE->CreateSamplerState(&Desc, m_Sampler[1].GetAddressOf())))
     {
         return E_FAIL;
     }
 
+    // Linear Filter
     Desc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
     Desc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
     Desc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
-    Desc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR; // 포인트 필터링
+    Desc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
 
     if (FAILED(DEVICE->CreateSamplerState(&Desc, m_Sampler[2].GetAddressOf())))
     {
@@ -427,6 +405,46 @@ int CDevice::CreateSamplerState()
     CONTEXT->GSSetSamplers(2, 1, m_Sampler[2].GetAddressOf());
     CONTEXT->PSSetSamplers(2, 1, m_Sampler[2].GetAddressOf());
     CONTEXT->CSSetSamplers(2, 1, m_Sampler[2].GetAddressOf());
+
+    return S_OK;
+}
+
+int CDevice::CreateConstantBuffer()
+{
+    CConstantBuffer* pCB = nullptr;
+
+    // World, View, Projection Matrix Transmission
+    pCB = new CConstantBuffer;
+    if (FAILED(pCB->Create(CONSTANT_BUFFER_TYPE::TRANSFORM, sizeof(tTransform))))
+    {
+        MessageBox(nullptr, L"Transform constant buffer creation failed.", L"초기화 실패", MB_OK);
+        return E_FAIL;
+    }
+    m_arrCB[(UINT)CONSTANT_BUFFER_TYPE::TRANSFORM] = pCB;
+
+    pCB = new CConstantBuffer;
+    if (FAILED(pCB->Create(CONSTANT_BUFFER_TYPE::MATERIAL, sizeof(tMtrlConst))))
+    {
+        MessageBox(nullptr, L"Material constant buffer creation failed.", L"초기화 실패", MB_OK);
+        return E_FAIL;
+    }
+    m_arrCB[(UINT)CONSTANT_BUFFER_TYPE::MATERIAL] = pCB;
+
+    pCB = new CConstantBuffer;
+    if (FAILED(pCB->Create(CONSTANT_BUFFER_TYPE::SPRITE, sizeof(tSpriteInfo))))
+    {
+        MessageBox(nullptr, L"Sprite constant buffer creation failed.", L"초기화 실패", MB_OK);
+        return E_FAIL;
+    }
+    m_arrCB[(UINT)CONSTANT_BUFFER_TYPE::SPRITE] = pCB;
+
+    pCB = new CConstantBuffer;
+    if (FAILED(pCB->Create(CONSTANT_BUFFER_TYPE::GLOBAL, sizeof(tGlobalData))))
+    {
+        MessageBox(nullptr, L"Global Data constant buffer creation failed.", L"초기화 실패", MB_OK);
+        return E_FAIL;
+    }
+    m_arrCB[(UINT)CONSTANT_BUFFER_TYPE::GLOBAL] = pCB;
 
     return S_OK;
 }

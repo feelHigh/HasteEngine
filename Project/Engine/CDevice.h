@@ -12,7 +12,10 @@ class CDevice
 	SINGLE(CDevice);
 public:
 	int Initialize(HWND _hWnd, UINT _Width, UINT _Height);
-	void Present() { m_SwapChain->Present(0, 0); }
+	void Present();
+
+public:
+	void SetViewport(float _Width, float _Height);
 
 public:
 	ID3D11Device* GetDevice() { return m_Device.Get(); }
@@ -29,11 +32,11 @@ public:
 private:
 	int CreateSwapChain();
 	int CreateView();
-	int CreateConstantBuffer();
 	int CreateRasterizerState();
 	int CreateDepthStencilState();
 	int CreateBlendState();
 	int CreateSamplerState();
+	int CreateConstantBuffer();
 
 private:
 	HWND							m_hWnd;

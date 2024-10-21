@@ -10,7 +10,11 @@ class CEngine
 public:
 	int Initialize(HWND _wnd, POINT _ptResolution, OBJECT_SAVE _SaveFunc, OBJECT_LOAD _Func);
 	void Progress();
+
+public:
 	void ChangeWindowScale(UINT _Width, UINT _Height);
+
+public:
 	FMOD::System* GetFMODSystem() { return m_FMODSystem; }
 
 public:
