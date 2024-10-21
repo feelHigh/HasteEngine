@@ -20,9 +20,7 @@
 
 // Editor Headers
 #include "CEditor.h"
-#include "CContentDrawer.h"
-#include "COutliner.h"
-#include "CMenuUI.h"
+//#include "CLevelEditor.h"
 
 // ImGui Headers
 #include "ImGui/imgui.h"
@@ -169,15 +167,15 @@ void CEditorMgr::Initialize()
     m_mapUI.insert(make_pair(pUI->GetName(), pUI));*/
 
     // Outliner
-    pUI = new COutliner;
+    /*pUI = new COutliner;
     pUI->SetName("Outliner");
-    m_mapUI.insert(make_pair(pUI->GetName(), pUI));
+    m_mapUI.insert(make_pair(pUI->GetName(), pUI));*/
 
     // Menu
-    pUI = new CMenuUI;
+    /*pUI = new CMenuUI;
     pUI->Initialize();
     pUI->SetName("MainMenu");
-    m_mapUI.insert(make_pair(pUI->GetName(), pUI));
+    m_mapUI.insert(make_pair(pUI->GetName(), pUI));*/
 
     //======================
     // Editor Objects

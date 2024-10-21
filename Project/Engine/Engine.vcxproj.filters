@@ -169,23 +169,14 @@
     <Filter Include="04. Manager\10. Editor Manager">
       <UniqueIdentifier>{0922e7a9-600d-4733-a4fa-ad3a48c61a15}</UniqueIdentifier>
     </Filter>
-    <Filter Include="09. Editor\Outliner">
-      <UniqueIdentifier>{b8cdbd18-c79c-4834-b9f0-ae7134756ebb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Module">
-      <UniqueIdentifier>{593afb23-6f84-4400-8d8e-7bdeec56b63c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Content Drawer">
-      <UniqueIdentifier>{2bb61018-202c-4cd3-9526-33f29d2884c3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09. Editor\Menu">
-      <UniqueIdentifier>{7e95959f-f33f-41f1-a0ce-bc086a938482}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Module\ImGui">
       <UniqueIdentifier>{93762cb8-11b1-4083-a863-a93506ff8fa6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Module\ImGui\ImGuizmo">
       <UniqueIdentifier>{5093b6f6-419c-4f34-9010-c814c66181df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="09. Editor\Level Editor">
+      <UniqueIdentifier>{6f0f14f9-36e4-44da-82f4-9a6d993966b1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -390,18 +381,6 @@
     <ClInclude Include="CLevelSaveLoad.h">
       <Filter>Module</Filter>
     </ClInclude>
-    <ClInclude Include="CContentDrawer.h">
-      <Filter>09. Editor\Content Drawer</Filter>
-    </ClInclude>
-    <ClInclude Include="CMenuUI.h">
-      <Filter>09. Editor\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="COutliner.h">
-      <Filter>09. Editor\Outliner</Filter>
-    </ClInclude>
-    <ClInclude Include="CTreeUI.h">
-      <Filter>09. Editor\Module</Filter>
-    </ClInclude>
     <ClInclude Include="CMRT.h">
       <Filter>Module</Filter>
     </ClInclude>
@@ -422,6 +401,9 @@
     </ClInclude>
     <ClInclude Include="ImGui\ImGuizmo\ImZoomSlider.h">
       <Filter>Module\ImGui\ImGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="CLevelEditor.h">
+      <Filter>09. Editor\Level Editor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -599,18 +581,6 @@
     <ClCompile Include="CLevelSaveLoad.cpp">
       <Filter>Module</Filter>
     </ClCompile>
-    <ClCompile Include="CContentDrawer.cpp">
-      <Filter>09. Editor\Content Drawer</Filter>
-    </ClCompile>
-    <ClCompile Include="CMenuUI.cpp">
-      <Filter>09. Editor\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="COutliner.cpp">
-      <Filter>09. Editor\Outliner</Filter>
-    </ClCompile>
-    <ClCompile Include="CTreeUI.cpp">
-      <Filter>09. Editor\Module</Filter>
-    </ClCompile>
     <ClCompile Include="CMRT.cpp">
       <Filter>Module</Filter>
     </ClCompile>
@@ -634,6 +604,9 @@
     </ClCompile>
     <ClCompile Include="ImGui\ImGuizmo\ImSequencer.cpp">
       <Filter>Module\ImGui\ImGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevelEditor.cpp">
+      <Filter>09. Editor\Level Editor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
