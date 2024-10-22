@@ -4,6 +4,24 @@
 #include "Global.hlsli"
 #include "Func.hlsli"
 
+struct VS_IN
+{
+    float3 vPos : POSITION;
+    float2 vUV : TEXCOORD;
+};
+
+struct VS_OUT
+{
+    float4 vPosition : SV_Position;
+    float2 vUV : TEXCOORD;
+};
+
+struct PS_OUT
+{
+    float4 vDiffuse : SV_TARGET;
+    float4 vSpecular : SV_TARGET1;
+};
+
 // ================================
 // Directional Light Shader 
 // MRT  : LIGHT (Diffuse, Specular)
@@ -16,22 +34,9 @@
 #define POS_TARGET      g_tex_0
 #define NORMAL_TARGET   g_tex_1
 // ================================
-struct VS_DIR_IN
+VS_OUT VS_DirLight(VS_IN _in)
 {
-    float3 vPos : POSITION;
-    float2 vUV : TEXCOORD;
-};
-
-struct VS_DIR_OUT
-{
-    float4 vPosition : SV_Position;
-    float2 vUV : TEXCOORD;
-};
-
-
-VS_DIR_OUT VS_DirLight(VS_DIR_IN _in)
-{
-    VS_DIR_OUT output = (VS_DIR_OUT) 0.f;
+    VS_OUT output = (VS_OUT) 0.f;
         
     output.vPosition = float4(_in.vPos * 2.f, 1.f);
     output.vUV = _in.vUV;
@@ -39,14 +44,7 @@ VS_DIR_OUT VS_DirLight(VS_DIR_IN _in)
     return output;
 }
 
-struct PS_OUT
-{
-    float4 vDiffuse : SV_TARGET;
-    float4 vSpecular : SV_TARGET1;
-};
-
-
-PS_OUT PS_DirLight(VS_DIR_OUT _in)
+PS_OUT PS_DirLight(VS_OUT _in)
 {
     PS_OUT output = (PS_OUT) 0.f;
     
@@ -71,5 +69,57 @@ PS_OUT PS_DirLight(VS_DIR_OUT _in)
     
     return output;
 }
+
+
+// ================================
+// Point Light Shader
+// MRT  : LIGHT (Diffuse, Specular)
+// Mesh : SphereMesh
+// Rasterizer   : CULL_FRONT, (CULL_NONE 하면 광원처리 2중첩 되는 문제가 있다)
+// DepthStencil : NO_TEST_NO_WRITE
+// BlendState   : ONE_ONE
+// Parameter
+//#define LIGHT_IDX       g_int_0
+//#define POS_TARGET      g_tex_0
+//#define NORMAL_TARGET   g_tex_1 
+// 뷰 역행렬
+// 월드 역행렬
+// ================================
+VS_OUT VS_PointLight(VS_IN _in)
+{
+    VS_OUT output = (VS_OUT) 0.f;
+        
+    output.vPosition = float4(_in.vPos * 2.f, 1.f);
+    output.vUV = _in.vUV;
+    
+    return output;
+}
+
+PS_OUT PS_PointLight(VS_OUT _in)
+{
+    PS_OUT output = (PS_OUT) 0.f;
+    
+    // 픽셀쉐이더랑 동일한 지점에서 Position 값을 확인한다.
+    float4 vViewPos = POS_TARGET.Sample(g_sam_0, _in.vUV);
+    
+    // 광원이 부딪힐 물체가 존재하지 않는다.
+    if (0.f == vViewPos.w)
+        discard;
+    
+    float3 vViewNormal = NORMAL_TARGET.Sample(g_sam_0, _in.vUV).xyz;
+    
+    // 해당 지점이 받을 빛의 세기를 계산한다.
+    tLight light = (tLight) 0.f;
+    CalculateLight3D(LIGHT_IDX, vViewNormal, vViewPos.xyz, light);
+        
+    output.vDiffuse = light.Color + light.Ambient;
+    output.vSpecular = light.SpecCoef;
+    
+    output.vDiffuse.a = 1.f;
+    output.vSpecular.a = 1.f;
+    
+    return output;
+}
+
 
 #endif

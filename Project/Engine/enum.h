@@ -97,6 +97,9 @@ enum class DEPTH_STENCIL_STATE_TYPE
 	NO_WRITE,
 	NO_TEST_NO_WRITE,
 
+	INNER,
+	OUTER,
+
 	END,
 };
 
