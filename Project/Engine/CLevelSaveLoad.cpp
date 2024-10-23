@@ -214,26 +214,25 @@ CComponent* CLevelSaveLoad::GetComponent(COMPONENT_TYPE _Type)
 
 	case COMPONENT_TYPE::COLLIDER3D:
 		break;
+
+	case COMPONENT_TYPE::FLIPBOOKCOMPONENT:
+		return new CFlipbookComponent;
+
+	case COMPONENT_TYPE::ANIMATION:
+		break;
+	case COMPONENT_TYPE::RIGIDBODY:
+		break;
+	case COMPONENT_TYPE::CAMERA:
+		return new CCamera;
+
 	case COMPONENT_TYPE::LIGHT2D:
 		return new CLight2D;
 
 	case COMPONENT_TYPE::LIGHT3D:
 		return new CLight3D;
 
-	case COMPONENT_TYPE::FLIPBOOKCOMPONENT:
-		return new CCollider2D;
-
-	case COMPONENT_TYPE::ANIMATION:
-		break;
-
 	case COMPONENT_TYPE::STATE_MACHINE:
 		break;
-
-	case COMPONENT_TYPE::RIGIDBODY:
-		break;
-
-	case COMPONENT_TYPE::CAMERA:
-		return new CCamera;
 
 	case COMPONENT_TYPE::MESHRENDER:
 		return new CMeshRender;
@@ -244,15 +243,14 @@ CComponent* CLevelSaveLoad::GetComponent(COMPONENT_TYPE _Type)
 	case COMPONENT_TYPE::PARTICLESYSTEM:
 		return new CParticleSystem;
 
-	case COMPONENT_TYPE::DECAl:
-		break;
+	case COMPONENT_TYPE::DECAL:
+		return new CDecal;
 
 	case COMPONENT_TYPE::SKYBOX:
 		return new CSkybox;
 
 	case COMPONENT_TYPE::LANDSCAPE:
 		break;
-
 	}
 
 	return nullptr;

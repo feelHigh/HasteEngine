@@ -405,6 +405,9 @@
     <ClInclude Include="CLevelEditor.h">
       <Filter>09. Editor\Level Editor</Filter>
     </ClInclude>
+    <ClInclude Include="CDecal.h">
+      <Filter>08. Component\Render Component\04. Decal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -607,6 +610,9 @@
     </ClCompile>
     <ClCompile Include="CLevelEditor.cpp">
       <Filter>09. Editor\Level Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="CDecal.cpp">
+      <Filter>08. Component\Render Component\04. Decal</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

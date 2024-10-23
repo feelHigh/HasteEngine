@@ -15,6 +15,7 @@ class CSkybox :
 public:
     CLONE(CSkybox);
     CSkybox();
+    CSkybox(const CSkybox& _Origin);
     ~CSkybox();
 
 public:
@@ -35,4 +36,4 @@ private:
 
 };
 
-#endif
+#endif // CSKYBOX_H

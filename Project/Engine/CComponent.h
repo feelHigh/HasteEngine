@@ -41,6 +41,7 @@ public:
     GET_OTHER_COMPONENT(MeshRender);
     GET_OTHER_COMPONENT(TileMap);
     GET_OTHER_COMPONENT(ParticleSystem);
+    GET_OTHER_COMPONENT(Decal);
     GET_OTHER_COMPONENT(Skybox);
 
 private:

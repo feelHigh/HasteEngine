@@ -16,6 +16,14 @@ CLight3D::CLight3D()
 	SetLightType(LIGHT_TYPE::DIRECTIONAL);
 }
 
+CLight3D::CLight3D(const CLight3D& _Origin)
+	: CComponent(_Origin)
+	, m_Info(_Origin.m_Info)
+	, m_LightIdx(-1)
+{
+	SetLightType(LIGHT_TYPE::DIRECTIONAL);
+}
+
 CLight3D::~CLight3D()
 {
 }
@@ -25,14 +33,20 @@ void CLight3D::FinalTick()
 	m_Info.WorldPos = Transform()->GetWorldPosition();
 	m_Info.WorldDir = Transform()->GetWorldDirection(DIRECTION_TYPE::FRONT);
 
+	// PointLight, SphereMesh, r = 0.5f
+	Transform()->SetRelativeScale(m_Info.Radius * 2.f, m_Info.Radius * 2.f, m_Info.Radius * 2.f);
+
 	// 자신을 RenderMgr 에 등록시킴
 	m_LightIdx = CRenderMgr::GetInstance()->RegisterLight3D(this);
 }
 
 void CLight3D::Render()
 {
+	Transform()->Binding();
+
 	m_LightMtrl->SetScalarParameter(INT_0, m_LightIdx);
 	m_LightMtrl->Binding();
+
 	m_VolumeMesh->Render();
 }
 
@@ -58,6 +72,11 @@ void CLight3D::SetLightType(LIGHT_TYPE _Type)
 		m_VolumeMesh = CAssetMgr::GetInstance()->FindAsset<CMesh>(L"ConeMesh");
 		m_LightMtrl = CAssetMgr::GetInstance()->FindAsset<CMaterial>(L"SpotLightMtrl");
 	}
+}
+
+void CLight3D::SetRadius(float _Radius)
+{
+	m_Info.Radius = _Radius;
 }
 
 void CLight3D::SaveToFile(FILE* _File)

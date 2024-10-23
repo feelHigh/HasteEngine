@@ -58,6 +58,7 @@ public:
     GET_COMPONENT(MeshRender, MESHRENDER);
     GET_COMPONENT(TileMap, TILEMAP);
     GET_COMPONENT(ParticleSystem, PARTICLESYSTEM);
+    GET_COMPONENT(Decal, DECAL);
     GET_COMPONENT(Skybox, SKYBOX);
 
 private:

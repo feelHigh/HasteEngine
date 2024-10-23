@@ -152,7 +152,6 @@ void CRenderMgr::CreateMaterial()
 	pShader->SetDepthStencilStateType(DEPTH_STENCIL_STATE_TYPE::NO_TEST_NO_WRITE);
 	pShader->SetBlendStateType(BLEND_STATE_TYPE::ONE_ONE);
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_LIGHT);
-
 	CAssetMgr::GetInstance()->AddAsset(L"DirLightShader", pShader);
 
 	// DirLightMtrl
@@ -162,6 +161,23 @@ void CRenderMgr::CreateMaterial()
 	pMtrl->SetTextureParameter(TEX_1, CAssetMgr::GetInstance()->FindAsset<CTexture>(L"NormalTargetTex"));
 	CAssetMgr::GetInstance()->AddAsset(L"DirLightMtrl", pMtrl);
 
+
+	// PointLightShader
+	pShader = new CGraphicShader;
+	pShader->CreateVertexShader(L"Shader\\light.fx", "VS_PointLight");
+	pShader->CreatePixelShader(L"Shader\\light.fx", "PS_PointLight");
+	pShader->SetRasterizerStateType(RASTERIZER_STATE_TYPE::CULL_FRONT);
+	pShader->SetDepthStencilStateType(DEPTH_STENCIL_STATE_TYPE::NO_TEST_NO_WRITE);
+	pShader->SetBlendStateType(BLEND_STATE_TYPE::ONE_ONE);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_LIGHT);
+	CAssetMgr::GetInstance()->AddAsset(L"PointLightShader", pShader);
+
+	// PointLightMtrl
+	pMtrl = new CMaterial(true);
+	pMtrl->SetShader(pShader);
+	pMtrl->SetTextureParameter(TEX_0, CAssetMgr::GetInstance()->FindAsset<CTexture>(L"PositionTargetTex"));
+	pMtrl->SetTextureParameter(TEX_1, CAssetMgr::GetInstance()->FindAsset<CTexture>(L"NormalTargetTex"));
+	CAssetMgr::GetInstance()->AddAsset(L"PointLightMtrl", pMtrl);
 
 	// MergeShader
 	pShader = new CGraphicShader;

@@ -71,7 +71,9 @@ public:
     float GetScale() { return m_ProjectionScale; }
 
     const Matrix& GetViewMatrix() { return m_matView; }
+    const Matrix& GetViewMatrixInverse() { return m_matViewInv; }
     const Matrix& GetProjectionMatrix() { return m_matProj; }
+    const Matrix& GetProjectionMatrixInverse() { return m_matProjInv; }
 
 public:
     virtual void SaveToFile(FILE* _File) override;
@@ -105,7 +107,9 @@ private:
     float                   m_ProjectionScale;
 
     Matrix                  m_matView;
+    Matrix                  m_matViewInv;
     Matrix                  m_matProj;
+    Matrix                  m_matProjInv;
 
     vector<CGameObject*>    m_vecDeferred;      // Deferred
     vector<CGameObject*>    m_vecOpaque;        // ∫“≈ı∏Ì

@@ -209,6 +209,8 @@ void CRenderMgr::Render(CCamera* _Cam)
 	// 물체가 렌더링될 때 사용할 View, Projection 행렬
 	g_Trans.matView = _Cam->GetViewMatrix();
 	g_Trans.matProj = _Cam->GetProjectionMatrix();
+	g_Trans.matViewInv = _Cam->GetViewMatrixInverse();
+	g_Trans.matProjInv = _Cam->GetProjectionMatrixInverse();
 
 	// MRT 모두 클리어
 	ClearMRT();
@@ -281,10 +283,10 @@ void CRenderMgr::RenderDebugShape()
 
 			break;
 		case DEBUG_SHAPE::CUBE:
-
+			m_DebugObject->MeshRender()->SetMesh(CAssetMgr::GetInstance()->FindAsset<CMesh>(L"CubeMesh_Debug"));
 			break;
 		case DEBUG_SHAPE::SPHERE:
-
+			m_DebugObject->MeshRender()->SetMesh(CAssetMgr::GetInstance()->FindAsset<CMesh>(L"SphereMesh"));
 			break;
 		}
 
