@@ -40,7 +40,7 @@ void CCollider2D::FinalTick()
 		matObjectScaleInv = XMMatrixInverse(nullptr, matObjectScaleInv);
 	}
 
-	m_matColWorld = matScale * matTranslation * matObjectScaleInv * GetOwner()->Transform()->GetWorldMat();
+	m_matColWorld = matScale * matTranslation * matObjectScaleInv * GetOwner()->Transform()->GetWorldMatrix();
 
 	// Debug 렌더링으로 충돌체의 위치를 표시
 	if (m_OverlapCount)

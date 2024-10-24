@@ -39,7 +39,7 @@ public:
     Vec3 GetRelativeDirection(DIRECTION_TYPE _Type) { return m_RelativeDir[_Type]; }
     Vec3 GetWorldDirection(DIRECTION_TYPE _Type) { return m_WorldDir[_Type]; }
 
-    const Matrix& GetWorldMat() { return m_matWorld; }
+    const Matrix& GetWorldMatrix() { return m_matWorld; }
 
 public:
     virtual void SaveToFile(FILE* _File) override;

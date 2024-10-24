@@ -145,6 +145,9 @@ void CTestLevel::CreateTestLevel()
 	pDecal->AddComponent(new CDecal);
 	pLevel->AddObject(3, pDecal);
 
+	pDecal->Transform()->SetRelativePosition(0.f, 0.f, 1000.f);
+	pDecal->Transform()->SetRelativeScale(100.f, 100.f, 100.f);
+
 	ChangeLevel(pLevel, LEVEL_STATE::STOP);
 
 	// 충돌 지정

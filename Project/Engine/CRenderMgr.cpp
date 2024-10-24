@@ -268,8 +268,15 @@ void CRenderMgr::RenderDebugShape()
 {
 	list<tDebugShapeInfo>::iterator iter = m_DebugShapeList.begin();
 
+	Ptr<CGraphicShader> pDebugShape = CAssetMgr::GetInstance()->FindAsset<CGraphicShader>(L"DebugShapeShader");
+	Ptr<CGraphicShader> pDebugLine = CAssetMgr::GetInstance()->FindAsset<CGraphicShader>(L"DebugLineShader");
+
 	for (; iter != m_DebugShapeList.end(); )
 	{
+		m_DebugObject->MeshRender()->GetMaterial()->GetShader()->SetTopology(D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP);
+		m_DebugObject->MeshRender()->GetMaterial()->GetShader()->SetRasterizerStateType(RASTERIZER_STATE_TYPE::CULL_NONE);
+		m_DebugObject->MeshRender()->GetMaterial()->SetShader(pDebugShape);
+
 		// 디버그 요청 모양에 맞는 메시를 가져옴
 		switch ((*iter).Shape)
 		{
@@ -280,13 +287,17 @@ void CRenderMgr::RenderDebugShape()
 			m_DebugObject->MeshRender()->SetMesh(CAssetMgr::GetInstance()->FindAsset<CMesh>(L"CircleMesh_Debug"));
 			break;
 		case DEBUG_SHAPE::LINE:
-
+			m_DebugObject->MeshRender()->SetMesh(CAssetMgr::GetInstance()->FindAsset<CMesh>(L"PointMesh"));
+			m_DebugObject->MeshRender()->GetMaterial()->SetShader(pDebugLine);
+			m_DebugObject->MeshRender()->GetMaterial()->GetShader()->SetTopology(D3D11_PRIMITIVE_TOPOLOGY_POINTLIST);
 			break;
 		case DEBUG_SHAPE::CUBE:
 			m_DebugObject->MeshRender()->SetMesh(CAssetMgr::GetInstance()->FindAsset<CMesh>(L"CubeMesh_Debug"));
 			break;
 		case DEBUG_SHAPE::SPHERE:
 			m_DebugObject->MeshRender()->SetMesh(CAssetMgr::GetInstance()->FindAsset<CMesh>(L"SphereMesh"));
+			m_DebugObject->MeshRender()->GetMaterial()->GetShader()->SetTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+			m_DebugObject->MeshRender()->GetMaterial()->GetShader()->SetRasterizerStateType(RASTERIZER_STATE_TYPE::CULL_FRONT);
 			break;
 		}
 
@@ -294,11 +305,19 @@ void CRenderMgr::RenderDebugShape()
 		m_DebugObject->Transform()->SetWorldMatrix((*iter).matWorld);
 
 		// 재질 세팅
+		m_DebugObject->MeshRender()->GetMaterial()->SetScalarParameter(INT_0, (int)(*iter).Shape);
 		m_DebugObject->MeshRender()->GetMaterial()->SetScalarParameter(VEC4_0, (*iter).vColor);
+
+		if ((*iter).Shape == DEBUG_SHAPE::LINE)
+		{
+			// 시작점, 끝점
+			m_DebugObject->MeshRender()->GetMaterial()->SetScalarParameter(VEC4_1, Vec4((*iter).vPos, 1.f));
+			m_DebugObject->MeshRender()->GetMaterial()->SetScalarParameter(VEC4_2, Vec4((*iter).vScale, 1.f));
+		}
 
 		// 깊이판정 여부에 따라서, 쉐이더의 깊이판정 방식을 결정한다.
 		if ((*iter).DepthTest)
-			m_DebugObject->MeshRender()->GetMaterial()->GetShader()->SetDepthStencilStateType(DEPTH_STENCIL_STATE_TYPE::LESS);
+			m_DebugObject->MeshRender()->GetMaterial()->GetShader()->SetDepthStencilStateType(DEPTH_STENCIL_STATE_TYPE::NO_WRITE);
 		else
 			m_DebugObject->MeshRender()->GetMaterial()->GetShader()->SetDepthStencilStateType(DEPTH_STENCIL_STATE_TYPE::NO_TEST_NO_WRITE);
 

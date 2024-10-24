@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _CFUNC_H
+#define _CFUNC_H
 
 void CreateObject(class CGameObject* _NewObject, int _LayerIndex);
 void DeleteObject(CGameObject* _DeleteObject);
@@ -11,10 +12,14 @@ void DrawDebugRect(Vec3 _Pos, Vec3 _Scale, Vec3 _Rot, Vec4 _Color, float _Life, 
 void DrawDebugRect(const Matrix& _matWorld, Vec4 _Color, float _Life, bool _DepthTest);
 
 void DrawDebugCircle(Vec3 _Pos, float _Radius, Vec4 _Color, float _Life, bool _DepthTes);
-//void DrawDebugLine();
 
-//void DrawDebugCube();
-//void DrawDebugSphere();
+void DrawDebugCube(Vec3 _Pos, Vec3 _Scale, Vec3 _Rot, Vec4 _Color, float _Life, bool _DepthTest);
+void DrawDebugCube(const Matrix& _matWorld, Vec4 _Color, float _Life, bool _DepthTest);
+
+void DrawDebugSphere(Vec3 _Pos, float _Radius, Vec4 _Color, float _Life, bool _DepthTest);
+void DrawDebugSphere(const Matrix& _matWorld, Vec4 _Color, float _Life, bool _DepthTest);
+
+void DrawDebugLine(Vec3 _Start, Vec3 _End, Vec4 _Color, float _Life, bool _DepthTest);
 
 void SaveWString(const wstring& _String, FILE* _File);
 void LoadWString(wstring& _String, FILE* _File);
@@ -77,3 +82,5 @@ ASSET_TYPE GetAssetType()
 	if constexpr (std::is_same_v<T, CComputeShader>)
 		return ASSET_TYPE::COMPUTE_SHADER;
 }
+
+#endif // _CFUNC_H

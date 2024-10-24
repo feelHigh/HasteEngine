@@ -349,6 +349,10 @@ void CAssetMgr::CreateEngineMesh()
 #pragma region Cube Mesh Debug
 	// CubeMesh_Debug
 
+	vecIdx.push_back(0); vecIdx.push_back(1); vecIdx.push_back(2); vecIdx.push_back(3); vecIdx.push_back(4);
+	vecIdx.push_back(7); vecIdx.push_back(6); vecIdx.push_back(5); vecIdx.push_back(4); vecIdx.push_back(3);
+	vecIdx.push_back(0); vecIdx.push_back(7); vecIdx.push_back(6); vecIdx.push_back(1); vecIdx.push_back(2);
+	vecIdx.push_back(5);
 
 	pMesh = new CMesh(true);
 	pMesh->Create(arrCube, 24, vecIdx.data(), (UINT)vecIdx.size());
@@ -592,6 +596,21 @@ void CAssetMgr::CreateEngineGraphicShader()
 
 	AddAsset(L"DebugShapeShader", pShader);
 
+	// DebugLineShader
+	pShader = new CGraphicShader;
+	pShader->CreateVertexShader(L"Shader\\debug.fx", "VS_DebugLine");
+	pShader->CreateGeometryShader(L"Shader\\debug.fx", "GS_DebugLine");
+	pShader->CreatePixelShader(L"Shader\\debug.fx", "PS_DebugLine");
+
+	pShader->SetTopology(D3D11_PRIMITIVE_TOPOLOGY_POINTLIST);
+
+	pShader->SetRasterizerStateType(RASTERIZER_STATE_TYPE::CULL_NONE);
+	pShader->SetDepthStencilStateType(DEPTH_STENCIL_STATE_TYPE::LESS);
+	pShader->SetBlendStateType(BLEND_STATE_TYPE::ALPHABLEND);
+
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_DEBUG);
+
+	AddAsset(L"DebugLineShader", pShader);
 
 	// TileMapShader
 	pShader = new CGraphicShader;
